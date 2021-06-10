@@ -1,7 +1,7 @@
 {
   "name": "random-web-token",
   "version": "1.0.0",
-  "description": "It is a random web token generator",
+  "description": "It is a fast and easy token generator",
   "main": "tokenGenerator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
