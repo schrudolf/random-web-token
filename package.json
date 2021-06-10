@@ -1,0 +1,28 @@
+{
+  "name": "random-web-token",
+  "version": "1.0.0",
+  "description": "It is a random web token generator",
+  "main": "tokenGenerator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schrudolf/random-web-token.git"
+  },
+  "keywords": [
+    "random",
+    "token",
+    "generator",
+    "web",
+    "promise",
+    "token-generator",
+    "javascript"
+  ],
+  "author": "schrudolf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/schrudolf/random-web-token/issues"
+  },
+  "homepage": "https://github.com/schrudolf/random-web-token#readme"
+}
