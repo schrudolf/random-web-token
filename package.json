@@ -1,6 +1,6 @@
 {
   "name": "random-web-token",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "It is a fast and easy token generator",
   "main": "tokenGenerator.js",
   "scripts": {
@@ -17,7 +17,11 @@
     "web",
     "promise",
     "token-generator",
-    "javascript"
+    "javascript",
+    "key",
+    "keygen",
+    "random-token",
+    "web"
   ],
   "author": "schrudolf",
   "license": "ISC",
