@@ -1,10 +1,3 @@
-/**
- * like generate function but returns with Promise
- * 
- * @param {string} type type: "normal", "medium", "extra"
- * @param {number} rounds a number, this tells you the length of the token
- */
-
 const {
     normalToken,
     mediumToken,

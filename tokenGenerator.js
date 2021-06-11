@@ -2,6 +2,12 @@ const normalToken = require("./generator/normal/normalToken");
 const promiseToken = require("./generator/promise/promiseToken");
 
 class Generator {
+    /**
+     * normal Token generator with two parameters
+     * 
+     * @param {string} type "normal", "medium" or "extra"
+     * @param {number} rounds a number, this tells you the length of the token
+     */
     generate(type, rounds) {
         try {
             if (type !== "normal" && type !== "medium" && type !== "extra") {
@@ -15,6 +21,12 @@ class Generator {
             console.log(e)
         }
     }
+    /**
+     * like generate function but returns with Promise
+     * 
+     * @param {string} type "normal", "medium" or "extra"
+     * @param {number} rounds a number, this tells you the length of the token
+     */
     promiseGenerate(type, rounds) {
         try {
             if (type !== "normal" && type !== "medium" && type !== "extra") {
