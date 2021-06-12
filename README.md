@@ -6,7 +6,7 @@
 ## Installation
 
 ```sh
-npm install random-web-token --save
+npm install random-web-token
 ```
 
 ## Normal Usage
@@ -16,13 +16,13 @@ const token = require("random-web-token");
 
 console.log(token.generate("medium", 50))
 ```
-**Sample: return with 50length token ->**
+**Sample: returns with 50length token ->**
 
 sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
 
 ## Promise Usage  
 
-**Sample: same as before, but returns with promise**
+**same as before, but returns with promise**
 
 ```sh
 const token = require("random-web-token");
