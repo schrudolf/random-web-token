@@ -11,5 +11,11 @@ const extraToken = ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ő", "ú"
     "3", "4", "5", "6", "7", "8", "9", "ö", "ü", "ó", "Ö", "Ü", "Ó",
 ];
 
+const onlyNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
-module.exports = {normalToken, mediumToken, extraToken}
+module.exports = {
+    normalToken,
+    mediumToken,
+    extraToken,
+    onlyNumbers
+}

@@ -1,12 +1,14 @@
 const normalToken = require("./generator/normal/normalToken");
 const promiseToken = require("./generator/promise/promiseToken");
+const numberToken = require("./generator/normal/numberToken");
 
 class Generator {
     /**
-     * normal Token generator with two parameters
+     * @description normal Token generator with two parameters
      * 
      * @param {string} type "normal", "medium" or "extra"
      * @param {number} rounds a number, this tells you the length of the token
+     * @returns {string} a string
      */
     generate(type, rounds) {
         try {
@@ -22,10 +24,11 @@ class Generator {
         }
     }
     /**
-     * like generate function but returns with Promise
+     * @description like generate function but returns with Promise
      * 
      * @param {string} type "normal", "medium" or "extra"
      * @param {number} rounds a number, this tells you the length of the token
+     * @returns {Promise} Promise object
      */
     promiseGenerate(type, rounds) {
         try {
@@ -36,6 +39,23 @@ class Generator {
                 throw new Error(`Second parameter it must be a number type -> ${rounds}`)
             }
             return promiseToken(type, rounds)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    /**
+     * @description numberGenerate function return with only numbers
+     * @description the first character of a return token will never be 0
+     * 
+     * @param {number} rounds a number, this tells you the length of the number token
+     * @returns {string} numbers but as string
+     */
+    numberGenerate(rounds){
+        try {
+            if (typeof rounds !== "number") {
+                throw new Error(`parameter it must be a number type -> ${rounds}`)
+            }
+            return numberToken(rounds)
         } catch (e) {
             console.log(e)
         }

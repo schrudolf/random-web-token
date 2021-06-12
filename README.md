@@ -16,17 +16,14 @@ const token = require("random-web-token");
 
 console.log(token.generate("medium", 50))
 ```
-**Sample: returns with 50length token ->**
-
-sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
+**Sample: returns with 50length token**
+-> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
 
 ## Promise Usage  
 
 **same as before, but returns with promise**
 
 ```sh
-const token = require("random-web-token");
-
 token.promiseGenerate("medium", 50)
 ```
 
@@ -40,3 +37,13 @@ first parameter is a string
   - "extra"   ---> token generated with lowercase + uppercase + numbers and accented characters
 
 second parameter is a number, this tells you the length of the token
+
+## Number Token generator
+
+**function has one parameter**
+is a number, this tells you the length of the Number token
+
+token.numberGenerate(10)
+
+**Sample: returns with 10length Number token**
+-> 1368248387
