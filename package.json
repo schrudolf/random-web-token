@@ -26,10 +26,13 @@
     "random string",
     "easy",
     "fast",
-    "tokenizer"
+    "tokenizer",
+    "number",
+    "number token",
+    "number generator"
   ],
   "author": "schrudolf",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/schrudolf/random-web-token/issues"
   },

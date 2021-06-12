@@ -42,6 +42,7 @@ second parameter is a number, this tells you the length of the token
 ## Number Token generator
 
 **function has one parameter**
+
 is a number, this tells you the length of the Number token
 
 ```sh
