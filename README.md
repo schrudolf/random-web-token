@@ -17,6 +17,7 @@ const token = require("random-web-token");
 console.log(token.generate("medium", 50))
 ```
 **Sample: returns with 50length token**
+
 -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
 
 ## Promise Usage  
@@ -43,7 +44,10 @@ second parameter is a number, this tells you the length of the token
 **function has one parameter**
 is a number, this tells you the length of the Number token
 
+```sh
 token.numberGenerate(10)
+```
 
 **Sample: returns with 10length Number token**
+
 -> 1368248387
