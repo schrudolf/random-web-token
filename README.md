@@ -52,3 +52,11 @@ token.numberGenerate(10)
 **Sample: returns with 10length Number token**
 
 -> 1368248387
+
+## Promise Number Token generator
+
+like numberGenerate function but returns with Promise
+
+```sh
+token.numberPromiseGenerate(10)
+```

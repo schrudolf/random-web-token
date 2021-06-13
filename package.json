@@ -1,6 +1,6 @@
 {
   "name": "random-web-token",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "It is a fast and easy token generator",
   "main": "tokenGenerator.js",
   "scripts": {
@@ -29,7 +29,11 @@
     "tokenizer",
     "number",
     "number token",
-    "number generator"
+    "number generator",
+    "random string",
+    "random token",
+    "random generator",
+    "random token generator"
   ],
   "author": "schrudolf",
   "license": "MIT",
