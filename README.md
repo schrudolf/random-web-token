@@ -44,6 +44,7 @@ second parameter is a number, this tells you the length of the token
 **function has one parameter**
 
 is a number, this tells you the length of the Number token
+the first character of a return token will never be 0
 
 ```sh
 token.numberGenerate(10)
@@ -56,6 +57,7 @@ token.numberGenerate(10)
 ## Promise Number Token generator
 
 like numberGenerate function but returns with Promise
+the first character of a return token will never be 0
 
 ```sh
 token.numberPromiseGenerate(10)

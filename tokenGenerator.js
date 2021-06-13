@@ -49,7 +49,7 @@ class Generator {
      * @description the first character of a return token will never be 0
      * 
      * @param {number} rounds a number, this tells you the length of the number token
-     * @returns {promise} numbers but as string
+     * @returns {string} numbers but as string
      */
     numberGenerate(rounds) {
         try {
