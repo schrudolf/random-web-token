@@ -2,6 +2,7 @@ const normalToken = require("./generator/normal/normalToken");
 const promiseToken = require("./generator/promise/promiseToken");
 const numberToken = require("./generator/normal/numberToken");
 const numberPromiseToken = require("./generator/promise/numberPromiseToken");
+const saltingMyToken = require("./generator/promise/saltingWithMyCharacters");
 
 class Generator {
     /**
@@ -40,6 +41,26 @@ class Generator {
                 throw new Error(`Second parameter it must be a number type -> you use ${typeof rounds} type <-`)
             }
             return promiseToken(type, rounds)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    /**
+     * @description You can salt with your unique characters
+     * 
+     * @param {Array<string>} types array with string characters. Sample: ["a","b","c","1","2","3"] It is made with these characters
+     * @param {number} rounds a number, this tells you the length of the token
+     * @returns {Promise} Promise object
+     */
+     saltingWithMyCharacters(types, rounds) {
+        try {
+            if (!Array.isArray(types)) {
+                throw new Error(`First parameter is bad: -> ${types} <- use it Sample: ["a","b","c","1","2","3"] `)
+            }
+            if (typeof rounds !== "number") {
+                throw new Error(`Second parameter it must be a number type -> you use ${typeof rounds} type <-`)
+            }
+            return saltingMyToken(types, rounds)
         } catch (e) {
             console.log(e)
         }

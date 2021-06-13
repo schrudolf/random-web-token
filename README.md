@@ -1,6 +1,7 @@
 # random-web-token
 
 ## Generate a token easily
+**you can generate tokens with default characters or with your own characters easily**
 
 
 ## Installation
@@ -28,7 +29,7 @@ console.log(token.generate("medium", 50))
 token.promiseGenerate("medium", 50)
 ```
 
-## Parameter help
+## Parameter help for generate and promiseGenerate function
 
 **all functions has 2 parameters**
 
@@ -39,11 +40,24 @@ first parameter is a string
 
 second parameter is a number, this tells you the length of the token
 
+## If you want to salt with your unique characters
+
+**use the saltingWithMyCharacters function**
+
+Sample: 
+
+```sh
+token.saltingWithMyCharacters(["a","b","c","1","2","3"], 50)
+```
+
+generate a 50 length token with abc123 characters
+
 ## Number Token generator
 
 **function has one parameter**
 
 is a number, this tells you the length of the Number token
+
 the first character of a return token will never be 0
 
 ```sh
@@ -57,6 +71,7 @@ token.numberGenerate(10)
 ## Promise Number Token generator
 
 like numberGenerate function but returns with Promise
+
 the first character of a return token will never be 0
 
 ```sh
