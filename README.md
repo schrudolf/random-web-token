@@ -1,7 +1,7 @@
 # random-web-token
 
 ## Generate a token easily
-**you can generate tokens with default characters or with your own characters easily**
+**you can generate tokens with (a-z, a-Z, a-Z + 0-9 ...etc) or with your own characters easily**
 
 
 ## Installation
@@ -23,26 +23,26 @@ console.log(token.generate("medium", 50))
 
 ## Promise Usage  
 
-**same as before, but returns with promise**
+**same as token.generate() function, but returns with promise**
 
 ```sh
 token.promiseGenerate("medium", 50)
 ```
 
-## Parameter help for generate and promiseGenerate function
+## Parameter help for generate() and promiseGenerate() functions
 
 **all functions has 2 parameters**
 
 first parameter is a string
-  - "normal"  ---> token generated with lowercase and numbers
-  - "medium"  ---> token generated with lowercase + uppercase and numbers
-  - "extra"   ---> token generated with lowercase + uppercase + numbers and accented characters
+  - "normal"  ---> token generated with a-z characters = abcdefghijklmnopqrstuvwxyz
+  - "medium"  ---> token generated with a-z + 0-9 characters = abcdefghijklmnopqrstuvwxyz0123456789
+  - "extra"   ---> token generated with a-Z + 0-9 characters = ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
 
 second parameter is a number, this tells you the length of the token
 
-## If you want to salt with your unique characters
+## If you want to salt with your own characters
 
-**use the saltingWithMyCharacters function**
+**use the saltingWithMyCharacters() function**
 
 Sample: 
 
@@ -70,7 +70,7 @@ token.numberGenerate(10)
 
 ## Promise Number Token generator
 
-like numberGenerate function but returns with Promise
+like numberGenerate() function but returns with Promise
 
 the first character of a return token will never be 0
 
