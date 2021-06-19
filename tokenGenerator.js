@@ -30,7 +30,7 @@ class Generator {
      * 
      * @param {string} type "normal", "medium" or "extra"
      * @param {number} rounds a number, this tells you the length of the token
-     * @returns {Promise} Promise object
+     * @returns {Promise} Promise object string
      */
     promiseGenerate(type, rounds) {
         try {
@@ -50,9 +50,9 @@ class Generator {
      * 
      * @param {Array<string>} types array with string characters. Sample: ["a","b","c","1","2","3"] It is made with these characters
      * @param {number} rounds a number, this tells you the length of the token
-     * @returns {Promise} Promise object
+     * @returns {Promise} Promise object string
      */
-     saltingWithMyCharacters(types, rounds) {
+    saltingWithMyCharacters(types, rounds) {
         try {
             if (!Array.isArray(types)) {
                 throw new Error(`First parameter is bad: -> ${types} <- use it Sample: ["a","b","c","1","2","3"] `)
@@ -77,7 +77,7 @@ class Generator {
             if (typeof rounds !== "number") {
                 throw new Error(`parameter it must be a number type -> you use ${typeof rounds} type <-`)
             }
-            return numberPromiseToken(rounds)
+            return numberToken(rounds)
         } catch (e) {
             console.log(e)
         }
@@ -86,14 +86,15 @@ class Generator {
      * @description like numberGenerate function but returns with Promise
      * 
      * @param {number} rounds a number, this tells you the length of the number token
-     * @returns {Promise} Promise object
+     * @returns {Promise} Promise object string
      */
     numberPromiseGenerate(rounds) {
         try {
             if (typeof rounds !== "number") {
                 throw new Error(`parameter it must be a number type -> you use ${typeof rounds} type <-`)
             }
-            return numberToken(rounds)
+            return numberPromiseToken(rounds)
+            
         } catch (e) {
             console.log(e)
         }

@@ -21,10 +21,9 @@ module.exports = (type, rounds) => {
             info.length = extraToken.length
         }
         for (let i = 0; i < rounds; i++) {
-            const number = Math.random() * info.length;
-            const roundedNumber = Math.floor(number);
-            const tokenChar = info.usedToken[roundedNumber];
-            newToken.push(tokenChar);
+            const randomNumber = Math.floor(Math.random() * info.length);
+            const tokenChararacter = info.usedToken[randomNumber];
+            newToken.push(tokenChararacter);
         }
         if (newToken.length === rounds) {
             return resolve(newToken.join(""));

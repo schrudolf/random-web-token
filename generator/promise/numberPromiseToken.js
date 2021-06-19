@@ -6,13 +6,12 @@ module.exports = (rounds) => {
     return new Promise((resolve, reject) => {
         let newToken = [];
         for (let i = 0; i < rounds; i++) {
-            const number = Math.random() * onlyNumbers.length;
-            const roundedNumber = Math.floor(number);
-            const tokenChar = onlyNumbers[roundedNumber];
-            if (i === 0 && tokenChar === "0") {
+            const randomNumber = Math.floor(Math.random() * onlyNumbers.length);
+            const tokenCharacter = onlyNumbers[randomNumber];
+            if (i === 0 && tokenCharacter === "0") {
                 newToken.push("1");
             } else {
-                newToken.push(tokenChar);
+                newToken.push(tokenCharacter);
             }
 
         }
