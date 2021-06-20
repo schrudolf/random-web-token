@@ -46,16 +46,16 @@ class Generator {
         }
     }
     /**
-     * @description You can salt with your unique characters
+     * @description You can salt with your own characters
      * 
-     * @param {Array<string>} types array with string characters. Sample: ["a","b","c","1","2","3"] It is made with these characters
+     * @param {string} types string Sample: "abc123" generate a token with abc123 characters
      * @param {number} rounds a number, this tells you the length of the token
      * @returns {Promise} Promise object string
      */
     saltingWithMyCharacters(types, rounds) {
         try {
-            if (!Array.isArray(types)) {
-                throw new Error(`First parameter is bad: -> ${types} <- use it Sample: ["a","b","c","1","2","3"] `)
+            if (typeof types !== "string") {
+                throw new Error(`First parameter is bad: -> ${types} <- use it Sample: "abc123" `)
             }
             if (typeof rounds !== "number") {
                 throw new Error(`Second parameter it must be a number type -> you use ${typeof rounds} type <-`)

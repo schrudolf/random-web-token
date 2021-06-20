@@ -47,7 +47,7 @@ second parameter is a number, this tells you the length of the token
 Sample: 
 
 ```sh
-token.saltingWithMyCharacters(["a","b","c","1","2","3"], 50)
+token.saltingWithMyCharacters("abc123", 50)
 ```
 
 generate a 50 length token with abc123 characters
