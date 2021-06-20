@@ -15,7 +15,7 @@ npm install random-web-token
 ```sh
 const token = require("random-web-token");
 
-console.log(token.generate("medium", 50))
+console.log(token.generate("extra", 50))
 ```
 **Sample: returns with 50length token**
 
@@ -26,17 +26,17 @@ console.log(token.generate("medium", 50))
 **same as token.generate() function, but returns with promise**
 
 ```sh
-token.promiseGenerate("medium", 50)
+token.promiseGenerate("extra", 50)
 ```
 
 ## Parameter help for generate() and promiseGenerate() functions
 
-**all functions has 2 parameters**
+**functions has 2 parameters**
 
 first parameter is a string
-  - "normal"  ---> token generated with a-z characters = abcdefghijklmnopqrstuvwxyz
-  - "medium"  ---> token generated with a-z + 0-9 characters = abcdefghijklmnopqrstuvwxyz0123456789
-  - "extra"   ---> token generated with a-Z + 0-9 characters = ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+  - "normal"  ---> token generated with (a-z) characters = abcdefghijklmnopqrstuvwxyz
+  - "medium"  ---> token generated with (a-z + 0-9) characters = abcdefghijklmnopqrstuvwxyz0123456789
+  - "extra"   ---> token generated with (a-Z + 0-9) characters = ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
 
 second parameter is a number, this tells you the length of the token
 
