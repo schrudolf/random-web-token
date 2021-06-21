@@ -34,9 +34,10 @@ token.promiseGenerate("extra", 50)
 **functions has 2 parameters**
 
 first parameter is a string
-  - "normal"  ---> token generated with (a-z) characters = abcdefghijklmnopqrstuvwxyz
-  - "medium"  ---> token generated with (a-z + 0-9) characters = abcdefghijklmnopqrstuvwxyz0123456789
-  - "extra"   ---> token generated with (a-Z + 0-9) characters = ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+  - "normal"  ---> create a token with abcdefghijklmnopqrstuvwxyz characters
+  - "medium"  ---> create a token with abcdefghijklmnopqrstuvwxyz0123456789 characters
+  - "extra"   ---> create a token with ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 characters
+  - "onlyNumbers"   ---> create a token with numbers only
 
 second parameter is a number, this tells you the length of the token
 
@@ -52,21 +53,6 @@ token.saltingWithMyCharacters("abc123", 50)
 
 generate a 50 length token with abc123 characters
 
-## Number Token generator
-
-**function has one parameter**
-
-is a number, this tells you the length of the Number token
-
-the first character of a return token will never be 0
-
-```sh
-token.numberGenerate(10)
-```
-
-**Sample: returns with 10length Number token**
-
--> 1368248387
 
 ## Promise Number Token generator
 
