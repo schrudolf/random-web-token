@@ -52,14 +52,3 @@ token.saltingWithMyCharacters("abc123", 50)
 ```
 
 generate a 50 length token with abc123 characters
-
-
-## Promise Number Token generator
-
-like numberGenerate() function but returns with Promise
-
-the first character of a return token will never be 0
-
-```sh
-token.numberPromiseGenerate(10)
-```

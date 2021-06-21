@@ -1,6 +1,5 @@
 const normalToken = require("./generator/normal/normalToken");
 const promiseToken = require("./generator/promise/promiseToken");
-const numberPromiseToken = require("./generator/promise/numberPromiseToken");
 const saltingMyToken = require("./generator/promise/saltingWithMyCharacters");
 
 class Generator {
@@ -27,13 +26,13 @@ class Generator {
     /**
      * @description like generate function but returns with Promise
      * 
-     * @param {string} type "normal", "medium" or "extra"
+     * @param {string} type "normal", "medium", "extra" or "onlyNumbers"
      * @param {number} rounds a number, this tells you the length of the token
      * @returns {Promise} Promise object string
      */
     promiseGenerate(type, rounds) {
         try {
-            if (type !== "normal" && type !== "medium" && type !== "extra") {
+            if (type !== "normal" && type !== "medium" && type !== "extra" && type !== "onlyNumbers") {
                 throw new Error(`First parameter is bad: -> ${type} <- use it "normal", "medium" or "extra"`)
             }
             if (typeof rounds !== "number") {
@@ -60,23 +59,6 @@ class Generator {
                 throw new Error(`Second parameter it must be a number type -> you use ${typeof rounds} type <-`)
             }
             return saltingMyToken(types, rounds)
-        } catch (e) {
-            console.log(e)
-        }
-    }
-    /**
-     * @description like numberGenerate function but returns with Promise
-     * 
-     * @param {number} rounds a number, this tells you the length of the number token
-     * @returns {Promise} Promise object string
-     */
-    numberPromiseGenerate(rounds) {
-        try {
-            if (typeof rounds !== "number") {
-                throw new Error(`parameter it must be a number type -> you use ${typeof rounds} type <-`)
-            }
-            return numberPromiseToken(rounds)
-            
         } catch (e) {
             console.log(e)
         }
