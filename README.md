@@ -21,6 +21,7 @@ console.log(token.generate("extra", 50)) // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42
 ## Promise Usage  
 
 **same as token.generate() function, but returns with promise**
+
 **in async function**
 
 ```sh
@@ -43,6 +44,7 @@ second parameter is a number, this tells you the length of the token
 ## If you want token with your own characters
 
 **use the saltingWithMyCharacters() function**
+
 **in async function**
 
 Sample: 
