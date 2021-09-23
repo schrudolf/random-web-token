@@ -12,15 +12,15 @@ module.exports = (type, rounds) => {
             info.usedToken = normalToken
             info.length = normalToken.length
         }
-        if (type === "medium") {
+        else if (type === "medium") {
             info.usedToken = mediumToken
             info.length = mediumToken.length
         }
-        if (type === "extra") {
+        else if (type === "extra") {
             info.usedToken = extraToken
             info.length = extraToken.length
         }
-        if (type === "onlyNumbers") {
+        else if (type === "onlyNumbers") {
             for (let i = 0; i < rounds; i++) {
                 const randomNumber = Math.floor(Math.random() * 10); //Generate 0-9 random number
                 if (i === 0 && randomNumber === 0) {

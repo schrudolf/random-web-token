@@ -1,6 +1,6 @@
 {
   "name": "random-web-token",
-  "version": "1.5.7",
+  "version": "1.5.9",
   "description": "It is a fast and easy token generator",
   "main": "tokenGenerator.js",
   "scripts": {
