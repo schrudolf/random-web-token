@@ -6,7 +6,10 @@ const {
 
 module.exports = (type, rounds) => {
     let newToken = [];
-    let info = {}
+    let info = {
+        usedToken: null,
+        length: null
+    };
     if (type === "normal") {
         info.usedToken = normalToken
         info.length = normalToken.length
@@ -21,7 +24,7 @@ module.exports = (type, rounds) => {
     }
     else if (type === "onlyNumbers") {
         for (let i = 0; i < rounds; i++) {
-            const randomNumber = Math.floor(Math.random() * 10); //Generate 0-9 random number
+            let randomNumber = Math.floor(Math.random() * 10); //Generate 0-9 random number
             if (i === 0 && randomNumber === 0) {
                 newToken.push("1");
             } else {
@@ -34,8 +37,8 @@ module.exports = (type, rounds) => {
         }
     }
     for (let i = 0; i < rounds; i++) {
-        const randomNumber = Math.floor(Math.random() * info.length);
-        const tokenChararacter = info.usedToken[randomNumber];
+        let randomNumber = Math.floor(Math.random() * info.length);
+        let tokenChararacter = info.usedToken[randomNumber];
         newToken.push(tokenChararacter);
     }
     if (newToken.length === rounds) {
