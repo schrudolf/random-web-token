@@ -18,6 +18,7 @@ class Generator {
    * @returns {string} a string
    */
   generate(type, rounds) {
+    console.log("--> After 2.0.0 generate method will not be available. Use genSync() instead <--")
     const [isValid, msg] = this.#validParameters(type, rounds);
     if (!isValid) {
       console.log(msg);
@@ -61,6 +62,28 @@ class Generator {
       console.log(msg);
     } else {
       return saltingMyToken(type, rounds);
+    }
+  }
+  /**
+   * @description genSync() with two parameters
+   *
+   * @param {string} type "normal", "medium", "extra" or "onlyNumbers"
+   *
+   * - "normal" = (a-z)
+   * - "medium" = (a-z + 0-9)
+   * - "extra" = (a-Z + 0-9)
+   * - "onlyNumbers" = (0-9)
+   *
+   * @param {number} rounds length of token
+   * @example generate("extra", 100)
+   * @returns {string} a string
+   */
+  genSync(type, rounds) {
+    const [isValid, msg] = this.#validParameters(type, rounds);
+    if (!isValid) {
+      console.log(msg);
+    } else {
+      return normalToken(type, rounds);
     }
   }
   #validParameters(type, rounds) {
