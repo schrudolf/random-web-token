@@ -56,10 +56,11 @@ class Generator {
    * @returns {Promise} Promise object string
    */
   saltingWithMyCharacters(type, rounds) {
-    try {
+    const [isValid, msg] = this.#validParameters(type, rounds);
+    if (!isValid) {
+      console.log(msg);
+    } else {
       return saltingMyToken(type, rounds);
-    } catch (e) {
-      console.log(e);
     }
   }
   #validParameters(type, rounds) {
