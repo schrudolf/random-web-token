@@ -1,8 +1,9 @@
 # random-web-token
 
 ## Generate a token easily
-**you can generate tokens with (a-z, a-Z, a-Z + 0-9 ...etc) or with your own characters easily**
+**You can generate tokens with (a-z, a-Z, a-Z + 0-9 ...etc) or with your own characters easily without external dependencies**
 
+`After v1.9.0 promiseGenerate and generate methods will not be available. Use genSync(),genAsync() instead`
 
 ## Installation
 
@@ -15,23 +16,21 @@ npm install random-web-token
 ```sh
 const token = require("random-web-token");
 
-console.log(token.generate("extra", 50)) // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
+console.log(token.genSync("extra", 50)) // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
 ```
 
-## Promise Usage  
+## Async usage  
 
-**same as token.generate() function, but returns with promise**
-
-**in async function**
+**same as token.genAsync() method, but returns with a Promise**
 
 ```sh
-const newToken = await token.promiseGenerate("extra", 50)
+const newToken = await token.genAsync("extra", 50)
 console.log(newToken) // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
 ```
 
-## Parameter help for generate() and promiseGenerate() functions
+## Parameter help for genSync() and genAsync() methods
 
-**functions has 2 parameters**
+**methods has 2 parameters**
 
 first parameter is a string
   - "normal"  -> create a token with (a-z) characters
@@ -39,18 +38,15 @@ first parameter is a string
   - "extra"   -> create a token with (a-Z + 0-9) characters
   - "onlyNumbers"   -> create a token with (0-9) characters
 
-second parameter is a number, this tells you the length of the token
+second parameter is a number, this tells the length of token
 
 ## If you want a token with your own characters
 
-**use the withMyOwnCharacters() function**
-
-**in async function**
+**use withMyOwnCharacters() method**
 
 Sample: 
 
 ```sh
 const newToken = await token.withMyOwnCharacters("abc123", 50)
+console.log(newToken) // -> a2b1cc23a
 ```
-
-generate a 50 length token with a,b,c characters and with 1,2,3 numbers
