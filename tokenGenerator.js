@@ -18,7 +18,9 @@ class Generator {
    * @returns {string} a string
    */
   generate(type, rounds) {
-    console.log("--> After 2.0.0 generate method will not be available. Use genSync() instead <--")
+    console.log(
+      "--> After v1.9.0 generate method will not be available. Use genSync() instead <--"
+    );
     const [isValid, msg] = this.#validParameters(type, rounds);
     if (!isValid) {
       console.log(msg);
@@ -41,6 +43,9 @@ class Generator {
    * @returns {Promise} Promise object string
    */
   promiseGenerate(type, rounds) {
+    console.log(
+        "--> After v1.9.0 promiseGenerate method will not be available. Use genAsync() instead <--"
+      );
     const [isValid, msg] = this.#validParameters(type, rounds);
     if (!isValid) {
       console.log(msg);
@@ -75,7 +80,7 @@ class Generator {
    * - "onlyNumbers" = (0-9)
    *
    * @param {number} rounds length of token
-   * @example generate("extra", 100)
+   * @example genSync("extra", 100)
    * @returns {string} a string
    */
   genSync(type, rounds) {
@@ -86,16 +91,38 @@ class Generator {
       return normalToken(type, rounds);
     }
   }
+  /**
+   * @description same as genSync() method but returns with a Promise
+   *
+   * @param {string} type "normal", "medium", "extra" or "onlyNumbers"
+   *
+   * - "normal" = (a-z)
+   * - "medium" = (a-z + 0-9)
+   * - "extra" = (a-Z + 0-9)
+   * - "onlyNumbers" = (0-9)
+   *
+   * @param {number} rounds length of token
+   * @example genAsync("extra", 100)
+   * @returns {Promise<string>}
+   */
+  genAsync(type, rounds) {
+    const [isValid, msg] = this.#validParameters(type, rounds);
+    if (!isValid) {
+      console.log(msg);
+    } else {
+      return promiseToken(type, rounds);
+    }
+  }
   #validParameters(type, rounds) {
     if (typeof type !== "string") {
       return [
         false,
-        `The First parameter parameter must be a string: -> ${type}`,
+        `The first parameter parameter must be a string`,
       ];
     } else if (typeof rounds !== "number") {
       return [
         false,
-        `The second parameter must be a number > you used ${typeof rounds} type <-`,
+        `The second parameter must be a number`,
       ];
     } else {
       return [true, "Valid parameters"];
