@@ -21,7 +21,7 @@ console.log(token.genSync("extra", 50)) // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42z
 
 ## Async usage  
 
-**same as token.genAsync() method, but returns with a Promise**
+**same as token.genSync() method, but returns with a Promise**
 
 ```sh
 const newToken = await token.genAsync("extra", 50)
@@ -43,8 +43,6 @@ second parameter is a number, this tells the length of token
 ## If you want a token with your own characters
 
 **use withMyOwnCharacters() method**
-
-Sample: 
 
 ```sh
 const newToken = await token.withMyOwnCharacters("abc123", 50)
