@@ -40,10 +40,11 @@ class Generator {
    * @returns {Promise} Promise object string
    */
   promiseGenerate(type, rounds) {
-    try {
+    const [isValid, msg] = this.#validParameters(type, rounds);
+    if (!isValid) {
+      console.log(msg);
+    } else {
       return promiseToken(type, rounds);
-    } catch (e) {
-      console.log(e);
     }
   }
   /**
@@ -63,7 +64,10 @@ class Generator {
   }
   #validParameters(type, rounds) {
     if (typeof type !== "string") {
-      return [false, `The First parameter parameter must be a string: -> ${type}`];
+      return [
+        false,
+        `The First parameter parameter must be a string: -> ${type}`,
+      ];
     } else if (typeof rounds !== "number") {
       return [
         false,
