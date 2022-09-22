@@ -18,10 +18,11 @@ class Generator {
    * @returns {string} a string
    */
   generate(type, rounds) {
-    try {
+    const [isValid, msg] = this.#validParameters(type, rounds);
+    if (!isValid) {
+      console.log(msg);
+    } else {
       return normalToken(type, rounds);
-    } catch (e) {
-      console.log(e);
     }
   }
   /**
@@ -62,9 +63,12 @@ class Generator {
   }
   #validParameters(type, rounds) {
     if (typeof type !== "string") {
-      return [false, `First parameter it must be a number: -> ${type}`];
+      return [false, `The First parameter parameter must be a string: -> ${type}`];
     } else if (typeof rounds !== "number") {
-      return [false, `Second parameter it must be a number > you used ${typeof rounds} type <-`,];
+      return [
+        false,
+        `The second parameter must be a number > you used ${typeof rounds} type <-`,
+      ];
     } else {
       return [true, "Valid parameters"];
     }
