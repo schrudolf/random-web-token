@@ -41,16 +41,16 @@ first parameter is a string
 
 second parameter is a number, this tells you the length of the token
 
-## If you want token with your own characters
+## If you want a token with your own characters
 
-**use the saltingWithMyCharacters() function**
+**use the withMyOwnCharacters() function**
 
 **in async function**
 
 Sample: 
 
 ```sh
-const newToken = await token.saltingWithMyCharacters("abc123", 50)
+const newToken = await token.withMyOwnCharacters("abc123", 50)
 ```
 
 generate a 50 length token with a,b,c characters and with 1,2,3 numbers
