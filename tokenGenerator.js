@@ -48,21 +48,21 @@ class Generator {
   /**
    * @description You can salt with your own characters
    *
-   * @param {string} types string Sample: "abc123" generate a token with abc123 characters
+   * @param {string} type string Sample: "abc123" generate a token with abc123 characters
    * @param {number} rounds a number, this tells you the length of the token
    * @example saltingWithMyCharacters("abc123", 100)
    * @returns {Promise} Promise object string
    */
-  saltingWithMyCharacters(types, rounds) {
+  saltingWithMyCharacters(type, rounds) {
     try {
-      return saltingMyToken(types, rounds);
+      return saltingMyToken(type, rounds);
     } catch (e) {
       console.log(e);
     }
   }
-  #validParameters(types, rounds) {
-    if (typeof types !== "string") {
-      return [false, `First parameter it must be a number: -> ${types}`];
+  #validParameters(type, rounds) {
+    if (typeof type !== "string") {
+      return [false, `First parameter it must be a number: -> ${type}`];
     } else if (typeof rounds !== "number") {
       return [false, `Second parameter it must be a number > you used ${typeof rounds} type <-`,];
     } else {
