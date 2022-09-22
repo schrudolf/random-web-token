@@ -1,6 +1,6 @@
 const normalToken = require("./generator/normal/normalToken");
 const promiseToken = require("./generator/promise/promiseToken");
-const saltingMyToken = require("./generator/promise/saltingWithMyCharacters");
+const saltingMyToken = require("./generator/promise/withMyOwnCharacters");
 
 class Generator {
   /**
@@ -52,10 +52,10 @@ class Generator {
    *
    * @param {string} type string Sample: "abc123" generate a token with abc123 characters
    * @param {number} rounds a number, this tells you the length of the token
-   * @example saltingWithMyCharacters("abc123", 100)
+   * @example withMyOwnCharacters("abc123", 100)
    * @returns {Promise} Promise object string
    */
-  saltingWithMyCharacters(type, rounds) {
+  withMyOwnCharacters(type, rounds) {
     const [isValid, msg] = this.#validParameters(type, rounds);
     if (!isValid) {
       console.log(msg);
