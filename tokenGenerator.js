@@ -9,15 +9,15 @@ class Generator {
    * @description Create a Token with your own characters
    *
    * @param {string} type string Sample: "abc123" generate a token with abc123 characters
-   * @param {number} rounds a number, this tells you the length of the token
+   * @param {number} length a number, this tells you the length of the token
    * @example withMyOwnCharacters("abc123", 100)
    * @returns {Promise<string>}
    */
-  withMyOwnCharacters(type, rounds) {
+  withMyOwnCharacters(type, length) {
     this.#methodType = "withMyOwnCharacters";
-    const isValid = this.#validParameters(type, rounds);
+    const isValid = this.#validParameters(type, length);
     if (isValid) {
-      return getTokenWithMyOwnCharacters(type, rounds);
+      return getTokenWithMyOwnCharacters(type, length);
     }
   }
   /**
@@ -30,15 +30,15 @@ class Generator {
    * - "extra" = (a-Z + 0-9)
    * - "onlyNumbers" = (0-9)
    *
-   * @param {number} rounds length of token
+   * @param {number} length length of token
    * @example genSync("extra", 100)
    * @returns {string} a string
    */
-  genSync(type, rounds) {
+  genSync(type, length) {
     this.#methodType = "genSync";
-    const isValid = this.#validParameters(type, rounds);
+    const isValid = this.#validParameters(type, length);
     if (isValid) {
-      return getSyncToken(type, rounds);
+      return getSyncToken(type, length);
     }
   }
   /**
@@ -51,27 +51,27 @@ class Generator {
    * - "extra" = (a-Z + 0-9)
    * - "onlyNumbers" = (0-9)
    *
-   * @param {number} rounds length of token
+   * @param {number} length length of token
    * @example genAsync("extra", 100)
    * @returns {Promise<string>}
    */
-  genAsync(type, rounds) {
+  genAsync(type, length) {
     this.#methodType = "genAsync";
-    const isValid = this.#validParameters(type, rounds);
+    const isValid = this.#validParameters(type, length);
     if (isValid) {
-      return getAsyncToken(type, rounds);
+      return getAsyncToken(type, length);
     }
   }
-  #validParameters(type, rounds) {
+  #validParameters(type, length) {
     try {
       const usedMethod = ` -> ${this.#methodType}(type: string, length: number)`;
-      if (typeof type === "undefined" || typeof rounds === "undefined") {
+      if (typeof type === "undefined" || typeof length === "undefined") {
         throw new Error(`Missing parameter ${usedMethod}`);
       } else if (typeof type !== "string") {
         throw new Error(`The first parameter parameter must be a string  ${usedMethod}`);
-      } else if (typeof rounds !== "number") {
+      } else if (typeof length !== "number") {
         throw new Error(`The second parameter must be a number  ${usedMethod}`);
-      } else if (typeof rounds === "number" && rounds <= 0) {
+      } else if (typeof length === "number" && length <= 0) {
         throw new Error(`The second parameter must be bigger number than 0`);
       } else if (
         (this.#methodType === "genSync" || this.#methodType === "genAsync") &&
