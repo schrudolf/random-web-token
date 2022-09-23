@@ -12,10 +12,8 @@ class Generator {
    * @returns {Promise<string>}
    */
   withMyOwnCharacters(type, rounds) {
-    const [isValid, msg] = this.#validParameters(type, rounds);
-    if (!isValid) {
-      console.log(msg);
-    } else {
+    const isValid = this.#validParameters(type, rounds);
+    if (isValid) {
       return getTokenWithMyOwnCharacters(type, rounds);
     }
   }
@@ -34,10 +32,8 @@ class Generator {
    * @returns {string} a string
    */
   genSync(type, rounds) {
-    const [isValid, msg] = this.#validParameters(type, rounds);
-    if (!isValid) {
-      console.log(msg);
-    } else {
+    const isValid = this.#validParameters(type, rounds);
+    if (isValid) {
       return getSyncToken(type, rounds);
     }
   }
@@ -56,22 +52,24 @@ class Generator {
    * @returns {Promise<string>}
    */
   genAsync(type, rounds) {
-    const [isValid, msg] = this.#validParameters(type, rounds);
-    if (!isValid) {
-      console.log(msg);
-    } else {
+    const isValid = this.#validParameters(type, rounds);
+    if (isValid) {
       return getAsyncToken(type, rounds);
     }
   }
   #validParameters(type, rounds) {
-    if (typeof type !== "string") {
-      return [false, `The first parameter parameter must be a string`];
-    } else if (typeof rounds !== "number") {
-      return [false, `The second parameter must be a number`];
-    } else if (typeof rounds === "number" && rounds <= 0) {
-      return [false, `The second parameter must be bigger number than 0`];
-    } else {
-      return [true, "Valid parameters"];
+    try {
+      if (typeof type !== "string") {
+        throw new Error(`The first parameter parameter must be a string`);
+      } else if (typeof rounds !== "number") {
+        throw new Error(`The second parameter must be a number`);
+      } else if (typeof rounds === "number" && rounds <= 0) {
+        throw new Error(`The second parameter must be bigger number than 0`);
+      } else {
+        return true;
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 }
