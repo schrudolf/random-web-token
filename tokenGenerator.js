@@ -4,12 +4,12 @@ const getTokenWithMyOwnCharacters = require("./generator/async/withMyOwnCharacte
 
 class Generator {
   /**
-   * @description You can salt with your own characters
+   * @description Create a Token with your own characters
    *
    * @param {string} type string Sample: "abc123" generate a token with abc123 characters
    * @param {number} rounds a number, this tells you the length of the token
    * @example withMyOwnCharacters("abc123", 100)
-   * @returns {Promise} Promise object string
+   * @returns {Promise<string>}
    */
   withMyOwnCharacters(type, rounds) {
     const [isValid, msg] = this.#validParameters(type, rounds);
