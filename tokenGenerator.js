@@ -1,6 +1,6 @@
-const normalToken = require("./generator/normal/normalToken");
-const promiseToken = require("./generator/promise/promiseToken");
-const saltingMyToken = require("./generator/promise/withMyOwnCharacters");
+const normalToken = require("./generator/sync/normalToken");
+const promiseToken = require("./generator/async/promiseToken");
+const saltingMyToken = require("./generator/async/withMyOwnCharacters");
 
 class Generator {
   /**
