@@ -1,6 +1,6 @@
-const normalToken = require("./generator/sync/genSync");
-const promiseToken = require("./generator/async/genAsync");
-const saltingMyToken = require("./generator/async/withMyOwnCharacters");
+const getSyncToken = require("./generator/sync/genSync");
+const getAsyncToken = require("./generator/async/genAsync");
+const getTokenWithMyOwnCharacters = require("./generator/async/withMyOwnCharacters");
 
 class Generator {
   /**
@@ -16,7 +16,7 @@ class Generator {
     if (!isValid) {
       console.log(msg);
     } else {
-      return saltingMyToken(type, rounds);
+      return getTokenWithMyOwnCharacters(type, rounds);
     }
   }
   /**
@@ -38,7 +38,7 @@ class Generator {
     if (!isValid) {
       console.log(msg);
     } else {
-      return normalToken(type, rounds);
+      return getSyncToken(type, rounds);
     }
   }
   /**
@@ -60,20 +60,14 @@ class Generator {
     if (!isValid) {
       console.log(msg);
     } else {
-      return promiseToken(type, rounds);
+      return getAsyncToken(type, rounds);
     }
   }
   #validParameters(type, rounds) {
     if (typeof type !== "string") {
-      return [
-        false,
-        `The first parameter parameter must be a string`,
-      ];
+      return [false, `The first parameter parameter must be a string`];
     } else if (typeof rounds !== "number") {
-      return [
-        false,
-        `The second parameter must be a number`,
-      ];
+      return [false, `The second parameter must be a number`];
     } else {
       return [true, "Valid parameters"];
     }
