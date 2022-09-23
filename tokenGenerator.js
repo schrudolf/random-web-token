@@ -68,6 +68,8 @@ class Generator {
       return [false, `The first parameter parameter must be a string`];
     } else if (typeof rounds !== "number") {
       return [false, `The second parameter must be a number`];
+    } else if (typeof rounds === "number" && rounds <= 0) {
+      return [false, `The second parameter must be bigger number than 0`];
     } else {
       return [true, "Valid parameters"];
     }
