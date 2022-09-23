@@ -3,6 +3,8 @@ const getAsyncToken = require("./generator/async/genAsync");
 const getTokenWithMyOwnCharacters = require("./generator/async/withMyOwnCharacters");
 
 class Generator {
+  #methodType;
+  #availableTypes = ["normal", "medium", "extra", "onlyNumbers"];
   /**
    * @description Create a Token with your own characters
    *
@@ -12,6 +14,7 @@ class Generator {
    * @returns {Promise<string>}
    */
   withMyOwnCharacters(type, rounds) {
+    this.#methodType = "withMyOwnCharacters";
     const isValid = this.#validParameters(type, rounds);
     if (isValid) {
       return getTokenWithMyOwnCharacters(type, rounds);
@@ -32,6 +35,7 @@ class Generator {
    * @returns {string} a string
    */
   genSync(type, rounds) {
+    this.#methodType = "genSync";
     const isValid = this.#validParameters(type, rounds);
     if (isValid) {
       return getSyncToken(type, rounds);
@@ -52,6 +56,7 @@ class Generator {
    * @returns {Promise<string>}
    */
   genAsync(type, rounds) {
+    this.#methodType = "genAsync";
     const isValid = this.#validParameters(type, rounds);
     if (isValid) {
       return getAsyncToken(type, rounds);
@@ -59,12 +64,20 @@ class Generator {
   }
   #validParameters(type, rounds) {
     try {
-      if (typeof type !== "string") {
-        throw new Error(`The first parameter parameter must be a string`);
+      const usedMethod = ` -> ${this.#methodType}(type: string, length: number)`;
+      if (typeof type === "undefined" || typeof rounds === "undefined") {
+        throw new Error(`Missing parameter ${usedMethod}`);
+      } else if (typeof type !== "string") {
+        throw new Error(`The first parameter parameter must be a string  ${usedMethod}`);
       } else if (typeof rounds !== "number") {
-        throw new Error(`The second parameter must be a number`);
+        throw new Error(`The second parameter must be a number  ${usedMethod}`);
       } else if (typeof rounds === "number" && rounds <= 0) {
         throw new Error(`The second parameter must be bigger number than 0`);
+      } else if (
+        (this.#methodType === "genSync" || this.#methodType === "genAsync") &&
+        !this.#availableTypes.includes(type)
+      ) {
+        throw new Error(`Use 'normal', 'medium', 'extra' or 'onlyNumbers' at first parameter  ${usedMethod}`);
       } else {
         return true;
       }
