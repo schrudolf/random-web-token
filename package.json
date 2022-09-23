@@ -1,7 +1,7 @@
 {
   "name": "random-web-token",
-  "version": "1.8.0",
-  "description": "It is a fast and easy token generator",
+  "version": "1.9.0",
+  "description": "It is fast and easy token generator without external dependencies",
   "main": "tokenGenerator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,8 +23,8 @@
     "number token",
     "number generator",
     "random token generator",
-    "unique salt",
-    "salt"
+    "unique token",
+    "unique string token"
   ],
   "author": "schrudolf",
   "license": "MIT",

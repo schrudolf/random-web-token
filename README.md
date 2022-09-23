@@ -1,9 +1,8 @@
 # random-web-token
 
-## Generate a token easily
-**You can generate tokens with (a-z, a-Z, a-Z + 0-9 ...etc) or with your own characters easily without external dependencies**
+**Generate tokens with (a-z, a-Z, a-Z + 0-9 ...etc) or with your own characters easily without external dependencies**
 
-`After v1.9.0 promiseGenerate and generate methods will not be available. Use genSync(),genAsync() instead`
+`After v1.9.0 promiseGenerate and generate methods will not be available. Use genSync(), genAsync() instead`
 
 ## Installation
 
@@ -45,6 +44,6 @@ second parameter is a number, this tells the length of token
 **use withMyOwnCharacters() method**
 
 ```sh
-const newToken = await token.withMyOwnCharacters("abc123", 50)
-console.log(newToken) // -> a2b1cc23a
+const newToken = await token.withMyOwnCharacters("abc123", 10)
+console.log(newToken) // -> a2b1cc23ab
 ```
