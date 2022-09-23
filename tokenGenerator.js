@@ -4,31 +4,6 @@ const saltingMyToken = require("./generator/async/withMyOwnCharacters");
 
 class Generator {
   /**
-   * @description like generate function but returns with Promise
-   *
-   * @param {string} type "normal", "medium", "extra" or "onlyNumbers"
-   *
-   * - "normal" = (a-z)
-   * - "medium" = (a-z + 0-9)
-   * - "extra" = (a-Z + 0-9)
-   * - "onlyNumbers" = (0-9)
-   *
-   * @param {number} rounds a number, this tells you the length of the token
-   * @example promiseGenerate("extra", 100)
-   * @returns {Promise} Promise object string
-   */
-  promiseGenerate(type, rounds) {
-    console.log(
-        "--> After v1.9.0 promiseGenerate method will not be available. Use genAsync() instead <--"
-      );
-    const [isValid, msg] = this.#validParameters(type, rounds);
-    if (!isValid) {
-      console.log(msg);
-    } else {
-      return promiseToken(type, rounds);
-    }
-  }
-  /**
    * @description You can salt with your own characters
    *
    * @param {string} type string Sample: "abc123" generate a token with abc123 characters
