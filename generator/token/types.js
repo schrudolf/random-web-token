@@ -1,9 +1,9 @@
-const normalToken = "abcdefghijklmnopqrstuvwxyz";
-const mediumToken = "abcdefghijklmnopqrstuvwxyz0123456789";
-const extraToken  = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const normal = "abcdefghijklmnopqrstuvwxyz";
+const medium = "abcdefghijklmnopqrstuvwxyz0123456789";
+const extra = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 module.exports = {
-    normalToken,
-    mediumToken,
-    extraToken
-}
+  normal,
+  medium,
+  extra,
+};
