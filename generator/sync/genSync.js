@@ -1,6 +1,6 @@
 const { normal, medium, extra } = require("../token/types");
 
-module.exports = (type, rounds) => {
+module.exports = (type, length) => {
   let newToken = [];
   let info = {
     usedToken: null,
@@ -16,7 +16,7 @@ module.exports = (type, rounds) => {
     info.usedToken = extra;
     info.length = extra.length;
   } else if (type === "onlyNumbers") {
-    for (let i = 0; i < rounds; i++) {
+    for (let i = 0; i < length; i++) {
       let randomNumber = Math.floor(Math.random() * 10); //Generate 0-9 random number
       if (i === 0 && randomNumber === 0) {
         newToken.push("1");
@@ -24,16 +24,16 @@ module.exports = (type, rounds) => {
         newToken.push(randomNumber);
       }
     }
-    if (newToken.length === rounds) {
+    if (newToken.length === length) {
       return newToken.join("");
     }
   }
-  for (let i = 0; i < rounds; i++) {
+  for (let i = 0; i < length; i++) {
     let randomNumber = Math.floor(Math.random() * info.length);
     let tokenChararacter = info.usedToken[randomNumber];
     newToken.push(tokenChararacter);
   }
-  if (newToken.length === rounds) {
+  if (newToken.length === length) {
     return newToken.join("");
   }
 };
