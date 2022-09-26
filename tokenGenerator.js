@@ -62,6 +62,23 @@ class Generator {
       return getAsyncToken(type, length);
     }
   }
+  /**
+   * @description validator for genSync() and genAsync() or other Token
+   *
+   * @param {string} type same type as the generated Token
+   *
+   * @param {number} length same length as the generated Token
+   *
+   * @param {string} token The received token from genSync() or genAsync()
+   *
+   * @param {string} allowedPlusCharacters (This is optional) extra allowed characters in string -> "!%/"
+   *
+   * @example syncValidator("extra", 50, token, "")
+   * @returns {string}
+   */
+  syncValidator(type, length, token, allowedPlusCharacters){
+
+  }
   #validParameters(type, length) {
     try {
       const usedMethod = ` -> ${this.#methodType}(type: string, length: number)`;
