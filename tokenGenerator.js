@@ -1,6 +1,7 @@
 const getSyncToken = require("./generator/sync/genSync");
 const getAsyncToken = require("./generator/async/genAsync");
 const getTokenWithMyOwnCharacters = require("./generator/async/withMyOwnCharacters");
+const syncValidatorTest = require("./generator/sync/syncValidator");
 
 class Generator {
   #methodType;
@@ -71,13 +72,32 @@ class Generator {
    *
    * @param {string} token The received token from genSync() or genAsync()
    *
-   * @param {string} allowedPlusCharacters (This is optional) extra allowed characters in string -> "!%/"
+   * @param {string | undefined} allowedPlusCharacters (This is optional) extra allowed characters in string -> "!%/"
    *
    * @example syncValidator("extra", 50, token, "")
    * @returns {string}
    */
   syncValidator(type, length, token, allowedPlusCharacters){
-
+    this.#methodType = "syncValidator";
+    const isValid = this.#validParameters(type, length);
+    const checkValidatorPar = this.#checkValidatorParameters(token, allowedPlusCharacters);
+    if (isValid && checkValidatorPar) {
+      return syncValidatorTest(type, length, token, allowedPlusCharacters);
+    }
+  }
+  #checkValidatorParameters(token, allowedPlusCharacters){
+    try {
+      const usedMethod = ` -> ${this.#methodType}(type: string, length: number, token: string, allowedPlusCharacters: string | undefined)`;
+      if(typeof token !== "string"){
+        throw new Error(`The third parameter must be a string  ${usedMethod}`);
+      } else if(typeof allowedPlusCharacters !== "string" || typeof allowedPlusCharacters !== "undefined"){
+        throw new Error(`The fourth parameter must be a string or undefined  ${usedMethod}`);
+      } else {
+        return true;
+      }
+    }catch(err){
+      console.log(err);
+    }
   }
   #validParameters(type, length) {
     try {
@@ -85,7 +105,7 @@ class Generator {
       if (typeof type === "undefined" || typeof length === "undefined") {
         throw new Error(`Missing parameter ${usedMethod}`);
       } else if (typeof type !== "string") {
-        throw new Error(`The first parameter parameter must be a string  ${usedMethod}`);
+        throw new Error(`The first parameter must be a string  ${usedMethod}`);
       } else if (typeof length !== "number") {
         throw new Error(`The second parameter must be a number  ${usedMethod}`);
       } else if (typeof length === "number" && length <= 0) {
