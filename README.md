@@ -1,8 +1,4 @@
-# random-web-token
-
-**Generate tokens with (a-z, a-Z, a-Z + 0-9 ...etc) or with your own characters easily without external dependencies**
-
-`After v1.9.0 promiseGenerate and generate methods will not be available. Use genSync(), genAsync() instead`
+**Generating tokens with (a-z, a-Z, a-Z + 0-9 ...etc) or your own characters easily without external dependencies**
 
 ## Installation
 
@@ -12,28 +8,26 @@ npm install random-web-token
 
 ## Usage
 
+**Generating a token using genSync() or genAsync()**
+
 ```sh
 const token = require("random-web-token");
-
 console.log(token.genSync("extra", 50)) // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
 ```
-**if you want async version use genAsync()**
 
 ## Parameter help for genSync() and genAsync() methods
 
-**methods has 2 parameters**
-
 first parameter is a string
-  - "normal"  -> create a token with (a-z) characters
-  - "medium"  -> create a token with (a-z + 0-9) characters
-  - "extra"   -> create a token with (a-Z + 0-9) characters
-  - "onlyNumbers"   -> create a token with (0-9) characters
+  - "normal"      -> (a-z)
+  - "medium"      -> (a-z + 0-9)
+  - "extra"       -> (a-Z + 0-9)
+  - "onlyNumbers" -> (0-9)
 
-second parameter is a number, this tells the length of token
+second parameter is a number, the length of token
 
-## Validator usage  
+## Validator for genSync() or genAsync()  
 
-**Validator for genSync() or genAsync()**
+**Token validation using syncValidator() or asyncValidator()**
 
 ```sh
 const firstToken = token.genSync("extra", 50);
@@ -55,6 +49,5 @@ fourth parameter is optional
 **use withMyOwnCharacters() method**
 
 ```sh
-const newToken = await token.withMyOwnCharacters("abc123", 10)
-console.log(newToken) // -> a2b1cc23ab
+await token.withMyOwnCharacters("abc123", 10) // -> a2b1cc23ab
 ```
