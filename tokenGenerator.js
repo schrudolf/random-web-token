@@ -90,7 +90,7 @@ class Generator {
       const usedMethod = ` -> ${this.#methodType}(type: string, length: number, token: string, allowedPlusCharacters: string | undefined)`;
       if(typeof token !== "string"){
         throw new Error(`The third parameter must be a string  ${usedMethod}`);
-      } else if(typeof allowedPlusCharacters !== "string" || typeof allowedPlusCharacters !== "undefined"){
+      } else if(typeof allowedPlusCharacters !== "string" && typeof allowedPlusCharacters !== "undefined"){
         throw new Error(`The fourth parameter must be a string or undefined  ${usedMethod}`);
       } else {
         return true;
