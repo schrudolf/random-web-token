@@ -17,15 +17,19 @@ const token = require("random-web-token");
 
 console.log(token.genSync("extra", 50)) // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
 ```
+**if you want async version use genAsync()**
 
-## Async usage  
+## Parameter help for genSync() and genAsync() methods
 
-**same as token.genSync() method, but returns with a Promise**
+**methods has 2 parameters**
 
-```sh
-const newToken = await token.genAsync("extra", 50);
-console.log(newToken) // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
-```
+first parameter is a string
+  - "normal"  -> create a token with (a-z) characters
+  - "medium"  -> create a token with (a-z + 0-9) characters
+  - "extra"   -> create a token with (a-Z + 0-9) characters
+  - "onlyNumbers"   -> create a token with (0-9) characters
+
+second parameter is a number, this tells the length of token
 
 ## Validator usage  
 
@@ -45,18 +49,6 @@ console.log(token.syncValidator("extra", 53, secondToken, "")) // false same typ
 
 fourth parameter is optional
 ```
-
-## Parameter help for genSync() and genAsync() methods
-
-**methods has 2 parameters**
-
-first parameter is a string
-  - "normal"  -> create a token with (a-z) characters
-  - "medium"  -> create a token with (a-z + 0-9) characters
-  - "extra"   -> create a token with (a-Z + 0-9) characters
-  - "onlyNumbers"   -> create a token with (0-9) characters
-
-second parameter is a number, this tells the length of token
 
 ## If you want a token with your own characters
 
