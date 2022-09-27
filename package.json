@@ -1,7 +1,7 @@
 {
   "name": "random-web-token",
-  "version": "1.9.0",
-  "description": "It is fast and easy token generator without external dependencies",
+  "version": "1.9.5",
+  "description": "It is fast and easy token generator/validator without external dependencies",
   "main": "tokenGenerator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,7 +24,9 @@
     "number generator",
     "random token generator",
     "unique token",
-    "unique string token"
+    "unique string token",
+    "validator",
+    "token validator"
   ],
   "author": "schrudolf",
   "license": "MIT",
