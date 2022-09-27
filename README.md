@@ -23,8 +23,27 @@ console.log(token.genSync("extra", 50)) // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42z
 **same as token.genSync() method, but returns with a Promise**
 
 ```sh
-const newToken = await token.genAsync("extra", 50)
+const newToken = await token.genAsync("extra", 50);
 console.log(newToken) // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
+```
+
+## Validator usage  
+
+**Validator for genSync() or genAsync()**
+
+```sh
+const firstToken = token.genSync("extra", 50);
+
+console.log(token.syncValidator("extra", 50, firstToken)) // true firstToken same type,length
+console.log(token.syncValidator("extra", 40, firstToken)) // false firstToken same type, but firstToken length !== 40
+console.log(token.syncValidator("normal", 50, firstToken)) // false firstToken same length but not the same type.
+
+const secondToken = token.genSync("extra", 50) + "+!/"; // returns 50 length token + 3 extra character
+
+console.log(token.syncValidator("extra", 53, secondToken, "+!/")) // true same type/length and +3 allowed characters "+!/"
+console.log(token.syncValidator("extra", 53, secondToken, "")) // false same type/length but "+!/" characters not allowed
+
+fourth parameter is optional
 ```
 
 ## Parameter help for genSync() and genAsync() methods

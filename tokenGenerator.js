@@ -75,7 +75,7 @@ class Generator {
    * @param {string | undefined} allowedPlusCharacters (This is optional) extra allowed characters in string -> "!%/"
    *
    * @example syncValidator("extra", 50, token, "")
-   * @returns {string}
+   * @returns {boolean}
    */
   syncValidator(type, length, token, allowedPlusCharacters){
     this.#methodType = "syncValidator";
