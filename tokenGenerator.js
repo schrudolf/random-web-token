@@ -111,7 +111,7 @@ class Generator {
       } else if (typeof length === "number" && length <= 0) {
         throw new Error(`The second parameter must be bigger number than 0`);
       } else if (
-        (this.#methodType === "genSync" || this.#methodType === "genAsync") &&
+        (this.#methodType === "genSync" || this.#methodType === "genAsync" || this.#methodType === "syncValidator") &&
         !this.#availableTypes.includes(type)
       ) {
         throw new Error(`Use 'normal', 'medium', 'extra' or 'onlyNumbers' at first parameter  ${usedMethod}`);
