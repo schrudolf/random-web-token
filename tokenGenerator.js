@@ -11,20 +11,20 @@ class Generator {
   /**
    * @description Create a Token with your own characters
    *
-   * @param {string} type string Sample: "abc123" generate a token with abc123 characters
-   * @param {number} length a number, this tells you the length of the token
+   * @param {string} characters string Sample: "abc123" generate a token with a,b,c,1,2,3 characters
+   * @param {number} length length of the token
    * @example withMyOwnCharacters("abc123", 100)
    * @returns {Promise<string>}
    */
-  withMyOwnCharacters(type, length) {
+  withMyOwnCharacters(characters, length) {
     this.#methodType = "withMyOwnCharacters";
-    const isValid = this.#validParameters(type, length);
+    const isValid = this.#validParameters(characters, length);
     if (isValid) {
-      return getTokenWithMyOwnCharacters(type, length);
+      return getTokenWithMyOwnCharacters(characters, length);
     }
   }
   /**
-   * @description genSync() with two parameters
+   * @description sync token generator
    *
    * @param {string} type "normal", "medium", "extra" or "onlyNumbers"
    *
@@ -46,7 +46,7 @@ class Generator {
     }
   }
   /**
-   * @description same as genSync() method but returns with a Promise
+   * @description async token generator
    *
    * @param {string} type "normal", "medium", "extra" or "onlyNumbers"
    *
