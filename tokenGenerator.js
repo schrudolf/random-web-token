@@ -63,6 +63,7 @@ class Generator {
     this.#methodType = "genAsync";
     const isValid = this.#validParameters(type, length);
     if (isValid) {
+      let typeTemplate = this.#getTypeTemplate(type);
       return getAsyncToken(typeTemplate, length);
     }
   }
