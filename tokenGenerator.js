@@ -41,7 +41,8 @@ class Generator {
     this.#methodType = "genSync";
     const isValid = this.#validParameters(type, length);
     if (isValid) {
-      return getSyncToken(type, length);
+      let typeTemplate = this.#getTypeTemplate(type);
+      return getSyncToken(typeTemplate, length);
     }
   }
   /**
@@ -62,7 +63,7 @@ class Generator {
     this.#methodType = "genAsync";
     const isValid = this.#validParameters(type, length);
     if (isValid) {
-      return getAsyncToken(type, length);
+      return getAsyncToken(typeTemplate, length);
     }
   }
   /**
@@ -84,7 +85,7 @@ class Generator {
     const isValid = this.#validParameters(type, length);
     const checkValidatorPar = this.#checkValidatorParameters(token, allowedPlusCharacters);
     if (isValid && checkValidatorPar) {
-      let typeTemplate = this.#getTypeTemplate(type)
+      let typeTemplate = this.#getTypeTemplate(type);
       return syncValidatorTest(typeTemplate, length, token, allowedPlusCharacters);
     }
   }
@@ -107,7 +108,7 @@ class Generator {
     const isValid = this.#validParameters(type, length);
     const checkValidatorPar = this.#checkValidatorParameters(token, allowedPlusCharacters);
     if (isValid && checkValidatorPar) {
-      let typeTemplate = this.#getTypeTemplate(type)
+      let typeTemplate = this.#getTypeTemplate(type);
       return asyncValidatorTest(typeTemplate, length, token, allowedPlusCharacters);
     }
   }
