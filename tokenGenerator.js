@@ -3,6 +3,7 @@ const getAsyncToken = require("./generator/async/genAsync");
 const getTokenWithMyOwnCharacters = require("./generator/async/withMyOwnCharacters");
 const syncValidatorTest = require("./generator/sync/syncValidator");
 const asyncValidatorTest = require("./generator/async/asyncValidator");
+const {normal, medium, extra, onlyNumbers} = require("./generator/token/types");
 
 class Generator {
   #methodType;
@@ -83,7 +84,8 @@ class Generator {
     const isValid = this.#validParameters(type, length);
     const checkValidatorPar = this.#checkValidatorParameters(token, allowedPlusCharacters);
     if (isValid && checkValidatorPar) {
-      return syncValidatorTest(type, length, token, allowedPlusCharacters);
+      let typeTemplate = this.#getTypeTemplate(type)
+      return syncValidatorTest(typeTemplate, length, token, allowedPlusCharacters);
     }
   }
     /**
@@ -105,7 +107,19 @@ class Generator {
     const isValid = this.#validParameters(type, length);
     const checkValidatorPar = this.#checkValidatorParameters(token, allowedPlusCharacters);
     if (isValid && checkValidatorPar) {
-      return asyncValidatorTest(type, length, token, allowedPlusCharacters);
+      let typeTemplate = this.#getTypeTemplate(type)
+      return asyncValidatorTest(typeTemplate, length, token, allowedPlusCharacters);
+    }
+  }
+  #getTypeTemplate(type){
+    if (type === "normal") {
+      return normal;
+    } else if (type === "medium") {
+      return medium;
+    } else if (type === "extra") {
+      return extra;
+    } else {
+      return onlyNumbers;
     }
   }
   #checkValidatorParameters(token, allowedPlusCharacters){
