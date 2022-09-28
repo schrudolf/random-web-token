@@ -1,7 +1,7 @@
 {
   "name": "random-web-token",
   "version": "1.9.5",
-  "description": "It is fast and easy token generator/validator without external dependencies",
+  "description": "Token generator/validator without external dependencies",
   "main": "tokenGenerator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
