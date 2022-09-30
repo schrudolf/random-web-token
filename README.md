@@ -20,6 +20,7 @@ console.log(token.genSync("extra", 50)) // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42z
 first parameter is a string
   - "normal"      -> (a-z)
   - "medium"      -> (a-z + 0-9)
+  - "medium+"      -> (A-Z + 0-9)
   - "extra"       -> (a-Z + 0-9)
   - "onlyNumbers" -> (0-9)
 
