@@ -38,7 +38,7 @@ class Generator {
    *
    * @param {number} length length of token
    * @example genSync("extra", 100)
-   * @returns {string} a string
+   * @returns {string}
    */
   genSync(type, length) {
     this.#methodType = "genSync";

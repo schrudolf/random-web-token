@@ -1,6 +1,6 @@
 {
   "name": "random-web-token",
-  "version": "1.9.5",
+  "version": "1.9.8",
   "description": "Token generator/validator without external dependencies",
   "main": "tokenGenerator.js",
   "scripts": {
