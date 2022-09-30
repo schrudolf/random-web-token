@@ -6,7 +6,7 @@ const asyncValidatorTest = require("./generator/async/asyncValidator");
 
 class Generator {
   #methodType;
-  #availableTypes = ["normal", "medium", "extra", "onlyNumbers"];
+  #availableTypes = ["normal", "medium", "medium+", "extra", "onlyNumbers"];
   #letters = "abcdefghijklmnopqrstuvwxyz";
   #numbers = "0123456789";
   /**
@@ -27,10 +27,11 @@ class Generator {
   /**
    * @description sync token generator
    *
-   * @param {string} type "normal", "medium", "extra" or "onlyNumbers"
+   * @param {string} type "normal", "medium", "medium+", "extra" or "onlyNumbers"
    *
    * - "normal" = (a-z)
    * - "medium" = (a-z + 0-9)
+   * - "medium+" = (A-Z + 0-9)
    * - "extra" = (a-Z + 0-9)
    * - "onlyNumbers" = (0-9)
    *
@@ -49,10 +50,11 @@ class Generator {
   /**
    * @description async token generator
    *
-   * @param {string} type "normal", "medium", "extra" or "onlyNumbers"
+   * @param {string} type "normal", "medium", "medium+", "extra" or "onlyNumbers"
    *
    * - "normal" = (a-z)
    * - "medium" = (a-z + 0-9)
+   * - "medium+" = (A-Z + 0-9)
    * - "extra" = (a-Z + 0-9)
    * - "onlyNumbers" = (0-9)
    *
@@ -120,6 +122,9 @@ class Generator {
     } else if (type === "medium") {
       let medium = this.#letters + this.#numbers;
       return medium;
+    } else if(type === "medium+"){
+      let mediumPlus = this.#letters.toUpperCase() + this.#numbers;
+      return mediumPlus;
     } else if (type === "extra") {
       let extra = this.#letters + this.#letters.toUpperCase() + this.#numbers;
       return extra;
@@ -156,7 +161,7 @@ class Generator {
         (this.#methodType === "genSync" || this.#methodType === "genAsync" || this.#methodType === "syncValidator" || this.#methodType === "asyncValidator") &&
         !this.#availableTypes.includes(type)
       ) {
-        throw new Error(`Use 'normal', 'medium', 'extra' or 'onlyNumbers' at first parameter  ${usedMethod}`);
+        throw new Error(`Use 'normal', 'medium', 'medium+', 'extra' or 'onlyNumbers' at first parameter  ${usedMethod}`);
       } else {
         return true;
       }
