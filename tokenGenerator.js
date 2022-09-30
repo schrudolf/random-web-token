@@ -6,7 +6,7 @@ const asyncValidatorTest = require("./generator/async/asyncValidator");
 
 class Generator {
   #methodType;
-  #availableTypes = ["normal", "medium", "medium+", "extra", "onlyNumbers"];
+  #availableTypes = ["normal", "normal+", "medium", "medium+", "extra", "onlyNumbers"];
   #letters = "abcdefghijklmnopqrstuvwxyz";
   #numbers = "0123456789";
   /**
@@ -27,9 +27,10 @@ class Generator {
   /**
    * @description sync token generator
    *
-   * @param {string} type "normal", "medium", "medium+", "extra" or "onlyNumbers"
+   * @param {string} type "normal", "normal+", "medium", "medium+", "extra" or "onlyNumbers"
    *
    * - "normal" = (a-z)
+   * - "normal+" = (A-Z)
    * - "medium" = (a-z + 0-9)
    * - "medium+" = (A-Z + 0-9)
    * - "extra" = (a-Z + 0-9)
@@ -50,9 +51,10 @@ class Generator {
   /**
    * @description async token generator
    *
-   * @param {string} type "normal", "medium", "medium+", "extra" or "onlyNumbers"
+   * @param {string} type "normal", "normal+", "medium", "medium+", "extra" or "onlyNumbers"
    *
    * - "normal" = (a-z)
+   * - "normal+" = (A-Z)
    * - "medium" = (a-z + 0-9)
    * - "medium+" = (A-Z + 0-9)
    * - "extra" = (a-Z + 0-9)
@@ -119,6 +121,8 @@ class Generator {
   #getTypeTemplate(type){
     if (type === "normal") {
       return this.#letters;
+    } else if (type === "normal+") {
+      return this.#letters.toUpperCase();
     } else if (type === "medium") {
       let medium = this.#letters + this.#numbers;
       return medium;
@@ -161,7 +165,7 @@ class Generator {
         (this.#methodType === "genSync" || this.#methodType === "genAsync" || this.#methodType === "syncValidator" || this.#methodType === "asyncValidator") &&
         !this.#availableTypes.includes(type)
       ) {
-        throw new Error(`Use 'normal', 'medium', 'medium+', 'extra' or 'onlyNumbers' at first parameter  ${usedMethod}`);
+        throw new Error(`Use 'normal', 'normal+', 'medium', 'medium+', 'extra' or 'onlyNumbers' at first parameter  ${usedMethod}`);
       } else {
         return true;
       }
