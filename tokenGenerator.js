@@ -4,11 +4,19 @@ const getTokenWithMyOwnCharacters = require("./generator/async/withMyOwnCharacte
 const syncValidatorTest = require("./generator/sync/syncValidator");
 const asyncValidatorTest = require("./generator/async/asyncValidator");
 
-class Generator {
-  #methodType;
-  #availableTypes = ["normal", "normal+", "medium", "medium+", "extra", "onlyNumbers"];
-  #letters = "abcdefghijklmnopqrstuvwxyz";
-  #numbers = "0123456789";
+let methodType;
+const availableTypes = [
+  "normal",
+  "normal+",
+  "medium",
+  "medium+",
+  "extra",
+  "onlyNumbers",
+];
+const letters = "abcdefghijklmnopqrstuvwxyz";
+const numbers = "0123456789";
+
+const generator = {
   /**
    * @description Create a Token with your own characters
    *
@@ -17,13 +25,13 @@ class Generator {
    * @example withMyOwnCharacters("abc123", 100)
    * @returns {Promise<string>}
    */
-  withMyOwnCharacters(characters, length) {
-    this.#methodType = "withMyOwnCharacters";
-    const isValid = this.#validParameters(characters, length);
+  withMyOwnCharacters: (characters, length) => {
+    methodType = "withMyOwnCharacters";
+    const isValid = validParameters(characters, length);
     if (isValid) {
       return getTokenWithMyOwnCharacters(characters, length);
     }
-  }
+  },
   /**
    * @description sync token generator
    *
@@ -40,14 +48,14 @@ class Generator {
    * @example genSync("extra", 100)
    * @returns {string}
    */
-  genSync(type, length) {
-    this.#methodType = "genSync";
-    const isValid = this.#validParameters(type, length);
+  genSync: (type, length) => {
+    methodType = "genSync";
+    const isValid = validParameters(type, length);
     if (isValid) {
-      let typeTemplate = this.#getTypeTemplate(type);
+      let typeTemplate = getTypeTemplate(type);
       return getSyncToken(typeTemplate, length);
     }
-  }
+  },
   /**
    * @description async token generator
    *
@@ -64,14 +72,14 @@ class Generator {
    * @example genAsync("extra", 100)
    * @returns {Promise<string>}
    */
-  genAsync(type, length) {
-    this.#methodType = "genAsync";
-    const isValid = this.#validParameters(type, length);
+  genAsync: (type, length) => {
+    methodType = "genAsync";
+    const isValid = validParameters(type, length);
     if (isValid) {
-      let typeTemplate = this.#getTypeTemplate(type);
+      let typeTemplate = getTypeTemplate(type);
       return getAsyncToken(typeTemplate, length);
     }
-  }
+  },
   /**
    * @description sync validator for genSync() and genAsync() or other Token
    *
@@ -86,16 +94,24 @@ class Generator {
    * @example syncValidator("extra", 50, token, "")
    * @returns {boolean}
    */
-  syncValidator(type, length, token, allowedPlusCharacters){
-    this.#methodType = "syncValidator";
-    const isValid = this.#validParameters(type, length);
-    const checkValidatorPar = this.#checkValidatorParameters(token, allowedPlusCharacters);
+  syncValidator: (type, length, token, allowedPlusCharacters) => {
+    methodType = "syncValidator";
+    const isValid = validParameters(type, length);
+    const checkValidatorPar = checkValidatorParameters(
+      token,
+      allowedPlusCharacters
+    );
     if (isValid && checkValidatorPar) {
-      let typeTemplate = this.#getTypeTemplate(type);
-      return syncValidatorTest(typeTemplate, length, token, allowedPlusCharacters);
+      let typeTemplate = getTypeTemplate(type);
+      return syncValidatorTest(
+        typeTemplate,
+        length,
+        token,
+        allowedPlusCharacters
+      );
     }
-  }
-    /**
+  },
+  /**
    * @description async validator for genSync() and genAsync() or other Token
    *
    * @param {string} type same type as the generated Token
@@ -109,72 +125,91 @@ class Generator {
    * @example asyncValidator("extra", 50, token, "")
    * @returns {Promise<boolean>}
    */
-  asyncValidator(type, length, token, allowedPlusCharacters){
-    this.#methodType = "asyncValidator";
-    const isValid = this.#validParameters(type, length);
-    const checkValidatorPar = this.#checkValidatorParameters(token, allowedPlusCharacters);
+  asyncValidator: (type, length, token, allowedPlusCharacters) => {
+    methodType = "asyncValidator";
+    const isValid = validParameters(type, length);
+    const checkValidatorPar = checkValidatorParameters(
+      token,
+      allowedPlusCharacters
+    );
     if (isValid && checkValidatorPar) {
-      let typeTemplate = this.#getTypeTemplate(type);
-      return asyncValidatorTest(typeTemplate, length, token, allowedPlusCharacters);
+      let typeTemplate = getTypeTemplate(type);
+      return asyncValidatorTest(
+        typeTemplate,
+        length,
+        token,
+        allowedPlusCharacters
+      );
     }
-  }
-  #getTypeTemplate(type){
-    if (type === "normal") {
-      return this.#letters;
-    } else if (type === "normal+") {
-      return this.#letters.toUpperCase();
-    } else if (type === "medium") {
-      let medium = this.#letters + this.#numbers;
-      return medium;
-    } else if(type === "medium+"){
-      let mediumPlus = this.#letters.toUpperCase() + this.#numbers;
-      return mediumPlus;
-    } else if (type === "extra") {
-      let extra = this.#letters + this.#letters.toUpperCase() + this.#numbers;
-      return extra;
-    } else {
-      return this.#numbers;
-    }
-  }
-  #checkValidatorParameters(token, allowedPlusCharacters){
-    try {
-      const usedMethod = ` -> ${this.#methodType}(type: string, length: number, token: string, allowedPlusCharacters: string | undefined)`;
-      if(typeof token !== "string"){
-        throw new Error(`The third parameter must be a string  ${usedMethod}`);
-      } else if(typeof allowedPlusCharacters !== "string" && typeof allowedPlusCharacters !== "undefined"){
-        throw new Error(`The fourth parameter must be a string or undefined  ${usedMethod}`);
-      } else {
-        return true;
-      }
-    }catch(err){
-      console.log(err);
-    }
-  }
-  #validParameters(type, length) {
-    try {
-      const usedMethod = ` -> ${this.#methodType}(type: string, length: number)`;
-      if (typeof type === "undefined" || typeof length === "undefined") {
-        throw new Error(`Missing parameter ${usedMethod}`);
-      } else if (typeof type !== "string") {
-        throw new Error(`The first parameter must be a string  ${usedMethod}`);
-      } else if (typeof length !== "number") {
-        throw new Error(`The second parameter must be a number  ${usedMethod}`);
-      } else if (typeof length === "number" && length <= 0) {
-        throw new Error(`The second parameter must be bigger number than 0`);
-      } else if (
-        (this.#methodType === "genSync" || this.#methodType === "genAsync" || this.#methodType === "syncValidator" || this.#methodType === "asyncValidator") &&
-        !this.#availableTypes.includes(type)
-      ) {
-        throw new Error(`Use 'normal', 'normal+', 'medium', 'medium+', 'extra' or 'onlyNumbers' at first parameter  ${usedMethod}`);
-      } else {
-        return true;
-      }
-    } catch (err) {
-      console.log(err);
-    }
+  },
+};
+
+function getTypeTemplate(type) {
+  if (type === "normal") {
+    return letters;
+  } else if (type === "normal+") {
+    return letters.toUpperCase();
+  } else if (type === "medium") {
+    let medium = letters + numbers;
+    return medium;
+  } else if (type === "medium+") {
+    let mediumPlus = letters.toUpperCase() + numbers;
+    return mediumPlus;
+  } else if (type === "extra") {
+    let extra = letters + letters.toUpperCase() + numbers;
+    return extra;
+  } else {
+    return numbers;
   }
 }
 
-const newToken = new Generator();
+function checkValidatorParameters(token, allowedPlusCharacters) {
+  try {
+    const usedMethod = ` -> ${methodType}(type: string, length: number, token: string, allowedPlusCharacters: string | undefined)`;
+    if (typeof token !== "string") {
+      throw new Error(`The third parameter must be a string  ${usedMethod}`);
+    } else if (
+      typeof allowedPlusCharacters !== "string" &&
+      typeof allowedPlusCharacters !== "undefined"
+    ) {
+      throw new Error(
+        `The fourth parameter must be a string or undefined  ${usedMethod}`
+      );
+    } else {
+      return true;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
 
-module.exports = newToken;
+function validParameters(type, length) {
+  try {
+    const usedMethod = ` -> ${methodType}(type: string, length: number)`;
+    if (typeof type === "undefined" || typeof length === "undefined") {
+      throw new Error(`Missing parameter ${usedMethod}`);
+    } else if (typeof type !== "string") {
+      throw new Error(`The first parameter must be a string  ${usedMethod}`);
+    } else if (typeof length !== "number") {
+      throw new Error(`The second parameter must be a number  ${usedMethod}`);
+    } else if (typeof length === "number" && length <= 0) {
+      throw new Error(`The second parameter must be bigger number than 0`);
+    } else if (
+      (methodType === "genSync" ||
+        methodType === "genAsync" ||
+        methodType === "syncValidator" ||
+        methodType === "asyncValidator") &&
+      !availableTypes.includes(type)
+    ) {
+      throw new Error(
+        `Use 'normal', 'normal+', 'medium', 'medium+', 'extra' or 'onlyNumbers' at first parameter  ${usedMethod}`
+      );
+    } else {
+      return true;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+module.exports = generator;
