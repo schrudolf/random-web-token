@@ -3,11 +3,12 @@ const getAsyncToken = require("./generator/async/genAsync");
 const getTokenWithMyOwnCharacters = require("./generator/async/withMyOwnCharacters");
 const syncValidatorTest = require("./generator/sync/syncValidator");
 const asyncValidatorTest = require("./generator/async/asyncValidator");
-const {normal, medium, extra, onlyNumbers} = require("./generator/token/types");
 
 class Generator {
   #methodType;
   #availableTypes = ["normal", "medium", "extra", "onlyNumbers"];
+  #letters = "abcdefghijklmnopqrstuvwxyz";
+  #numbers = "0123456789";
   /**
    * @description Create a Token with your own characters
    *
@@ -115,13 +116,15 @@ class Generator {
   }
   #getTypeTemplate(type){
     if (type === "normal") {
-      return normal;
+      return this.#letters;
     } else if (type === "medium") {
+      let medium = this.#letters + this.#numbers;
       return medium;
     } else if (type === "extra") {
+      let extra = this.#letters + this.#letters.toUpperCase() + this.#numbers;
       return extra;
     } else {
-      return onlyNumbers;
+      return this.#numbers;
     }
   }
   #checkValidatorParameters(token, allowedPlusCharacters){
