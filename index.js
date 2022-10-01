@@ -1,8 +1,8 @@
-const getSyncToken = require("./generator/sync/genSync");
-const getAsyncToken = require("./generator/async/genAsync");
-const getTokenWithMyOwnCharacters = require("./generator/async/withMyOwnCharacters");
-const syncValidatorTest = require("./generator/sync/syncValidator");
-const asyncValidatorTest = require("./generator/async/asyncValidator");
+const getSyncToken = require("./lib/sync/genSync");
+const getAsyncToken = require("./lib/async/genAsync");
+const getTokenWithMyOwnCharacters = require("./lib/async/withMyOwnCharacters");
+const syncValidatorTest = require("./lib/sync/syncValidator");
+const asyncValidatorTest = require("./lib/async/asyncValidator");
 
 let methodType;
 const availableTypes = [
