@@ -1,4 +1,5 @@
 const token = require("../index");
+const getTypeTemplates = require("../lib/tokenTemplates/getTypeTemplate");
 
 test("Missing parameter", () => {
   const msg = "Missing parameter -> genSync(type: string, length: number)";
@@ -31,7 +32,7 @@ test("The first parameter must be a valid type", () => {
   expect(() => token.genSync("asdasdasd", 50)).toThrowError(new Error(msg));
 });
 
-test('Returned token have to length 50', () => {
+test("Returned token have to length 50", () => {
   expect(token.genSync("normal", 50)).toHaveLength(50);
   expect(token.genSync("normal+", 50)).toHaveLength(50);
   expect(token.genSync("medium", 50)).toHaveLength(50);
@@ -40,7 +41,7 @@ test('Returned token have to length 50', () => {
   expect(token.genSync("onlyNumbers", 50)).toHaveLength(50);
 });
 
-test('Returned token have to be a string', () => {
+test("Returned token have to be a string", () => {
   expect(typeof token.genSync("normal", 50)).toBe("string");
   expect(typeof token.genSync("normal+", 50)).toBe("string");
   expect(typeof token.genSync("medium", 50)).toBe("string");
@@ -51,4 +52,28 @@ test('Returned token have to be a string', () => {
 
 test('"onlyNumbers" type needs to be a string token with numbers', () => {
   expect(typeof parseInt(token.genSync("onlyNumbers", 50))).toBe("number");
+});
+
+test("All Type contains valid characters", () => {
+  const AllTypeCointainsValidCharacters = (type) => {
+    const freshToken = token.genSync(type, 10);
+    const tokenTemplate = getTypeTemplates(type);
+    const removeRepeatingLetters = Array.from(
+      new Set(freshToken.split(""))
+    ).toString();
+    const newToken = removeRepeatingLetters.replace(/,/g, "");
+    for (let i = 0; i < newToken.length; i++) {
+      if (!tokenTemplate.includes(newToken[i])) {
+        return false;
+      } else if (i === newToken.length - 1) {
+        return true;
+      }
+    }
+  };
+  expect(AllTypeCointainsValidCharacters("normal")).toBe(true);
+  expect(AllTypeCointainsValidCharacters("normal+")).toBe(true);
+  expect(AllTypeCointainsValidCharacters("medium")).toBe(true);
+  expect(AllTypeCointainsValidCharacters("medium+")).toBe(true);
+  expect(AllTypeCointainsValidCharacters("extra")).toBe(true);
+  expect(AllTypeCointainsValidCharacters("onlyNumbers")).toBe(true);
 });
