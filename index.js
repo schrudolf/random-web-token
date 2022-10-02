@@ -4,16 +4,9 @@ const getAsyncToken = require("./lib/async/genAsync");
 const getTokenWithMyOwnCharacters = require("./lib/async/withMyOwnCharacters");
 const syncValidatorTest = require("./lib/sync/syncValidator");
 const asyncValidatorTest = require("./lib/async/asyncValidator");
+const typeAndLengthCheck = require("./lib/errorHandlers/typeAndLengthCheck");
 
 let methodType;
-const availableTypes = [
-  "normal",
-  "normal+",
-  "medium",
-  "medium+",
-  "extra",
-  "onlyNumbers",
-];
 
 const generator = {
   /**
@@ -26,7 +19,7 @@ const generator = {
    */
   withMyOwnCharacters: (characters, length) => {
     methodType = "withMyOwnCharacters";
-    const isValid = validParameters(characters, length);
+    const isValid = typeAndLengthCheck(characters, length, methodType);
     if (isValid) {
       return getTokenWithMyOwnCharacters(characters, length);
     }
@@ -49,7 +42,7 @@ const generator = {
    */
   genSync: (type, length) => {
     methodType = "genSync";
-    const isValid = validParameters(type, length);
+    const isValid = typeAndLengthCheck(type, length, methodType);
     if (isValid) {
       let typeTemplate = getTypeTemplate(type);
       return getSyncToken(typeTemplate, length);
@@ -73,7 +66,7 @@ const generator = {
    */
   genAsync: (type, length) => {
     methodType = "genAsync";
-    const isValid = validParameters(type, length);
+    const isValid = typeAndLengthCheck(type, length, methodType);
     if (isValid) {
       let typeTemplate = getTypeTemplate(type);
       return getAsyncToken(typeTemplate, length);
@@ -95,7 +88,7 @@ const generator = {
    */
   syncValidator: (type, length, token, allowedPlusCharacters) => {
     methodType = "syncValidator";
-    const isValid = validParameters(type, length);
+    const isValid = typeAndLengthCheck(type, length, methodType);
     const checkValidatorPar = checkValidatorParameters(
       token,
       allowedPlusCharacters
@@ -126,7 +119,7 @@ const generator = {
    */
   asyncValidator: (type, length, token, allowedPlusCharacters) => {
     methodType = "asyncValidator";
-    const isValid = validParameters(type, length);
+    const isValid = typeAndLengthCheck(type, length, methodType);
     const checkValidatorPar = checkValidatorParameters(
       token,
       allowedPlusCharacters
@@ -154,35 +147,6 @@ function checkValidatorParameters(token, allowedPlusCharacters) {
     ) {
       throw new Error(
         `The fourth parameter must be a string or undefined  ${usedMethod}`
-      );
-    } else {
-      return true;
-    }
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-function validParameters(type, length) {
-  try {
-    const usedMethod = ` -> ${methodType}(type: string, length: number)`;
-    if (typeof type === "undefined" || typeof length === "undefined") {
-      throw new Error(`Missing parameter ${usedMethod}`);
-    } else if (typeof type !== "string") {
-      throw new Error(`The first parameter must be a string  ${usedMethod}`);
-    } else if (typeof length !== "number") {
-      throw new Error(`The second parameter must be a number  ${usedMethod}`);
-    } else if (typeof length === "number" && length <= 0) {
-      throw new Error(`The second parameter must be bigger number than 0`);
-    } else if (
-      (methodType === "genSync" ||
-        methodType === "genAsync" ||
-        methodType === "syncValidator" ||
-        methodType === "asyncValidator") &&
-      !availableTypes.includes(type)
-    ) {
-      throw new Error(
-        `Use 'normal', 'normal+', 'medium', 'medium+', 'extra' or 'onlyNumbers' at first parameter  ${usedMethod}`
       );
     } else {
       return true;
