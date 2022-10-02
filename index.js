@@ -7,9 +7,8 @@ const asyncValidatorTest = require("./lib/async/asyncValidator");
 const typeAndLengthCheck = require("./lib/errorHandlers/typeAndLengthCheck");
 const validatorParametersCheck = require("./lib/errorHandlers/validatorParametersCheck");
 
-let methodType;
-
 const generator = {
+  currentType: "",
   /**
    * @description Create a Token with your own characters
    *
@@ -19,8 +18,8 @@ const generator = {
    * @returns {Promise<string>}
    */
   withMyOwnCharacters: (characters, length) => {
-    methodType = "withMyOwnCharacters";
-    const isValid = typeAndLengthCheck(characters, length, methodType);
+    this.currentType = "withMyOwnCharacters";
+    const isValid = typeAndLengthCheck(characters, length, this.currentType);
     if (isValid) {
       return getTokenWithMyOwnCharacters(characters, length);
     }
@@ -42,8 +41,8 @@ const generator = {
    * @returns {string}
    */
   genSync: (type, length) => {
-    methodType = "genSync";
-    const isValid = typeAndLengthCheck(type, length, methodType);
+    this.currentType = "genSync";
+    const isValid = typeAndLengthCheck(type, length, this.currentType);
     if (isValid) {
       let typeTemplate = getTypeTemplate(type);
       return getSyncToken(typeTemplate, length);
@@ -66,8 +65,8 @@ const generator = {
    * @returns {Promise<string>}
    */
   genAsync: (type, length) => {
-    methodType = "genAsync";
-    const isValid = typeAndLengthCheck(type, length, methodType);
+    this.currentType = "genAsync";
+    const isValid = typeAndLengthCheck(type, length, this.currentType);
     if (isValid) {
       let typeTemplate = getTypeTemplate(type);
       return getAsyncToken(typeTemplate, length);
@@ -88,12 +87,12 @@ const generator = {
    * @returns {boolean}
    */
   syncValidator: (type, length, token, allowedPlusCharacters) => {
-    methodType = "syncValidator";
-    const isValid = typeAndLengthCheck(type, length, methodType);
+    this.currentType = "syncValidator";
+    const isValid = typeAndLengthCheck(type, length, this.currentType);
     const checkValidatorPar = validatorParametersCheck(
       token,
       allowedPlusCharacters,
-      methodType
+      currentType
     );
     if (isValid && checkValidatorPar) {
       let typeTemplate = getTypeTemplate(type);
@@ -120,12 +119,12 @@ const generator = {
    * @returns {Promise<boolean>}
    */
   asyncValidator: (type, length, token, allowedPlusCharacters) => {
-    methodType = "asyncValidator";
-    const isValid = typeAndLengthCheck(type, length, methodType);
+    this.currentType = "asyncValidator";
+    const isValid = typeAndLengthCheck(type, length, this.currentType);
     const checkValidatorPar = validatorParametersCheck(
       token,
       allowedPlusCharacters,
-      methodType
+      currentType
     );
     if (isValid && checkValidatorPar) {
       let typeTemplate = getTypeTemplate(type);
