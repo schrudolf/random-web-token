@@ -92,7 +92,7 @@ const generator = {
     const checkValidatorPar = validatorParametersCheck(
       token,
       allowedPlusCharacters,
-      currentType
+      this.currentType
     );
     if (isValid && checkValidatorPar) {
       let typeTemplate = getTypeTemplate(type);
@@ -124,7 +124,7 @@ const generator = {
     const checkValidatorPar = validatorParametersCheck(
       token,
       allowedPlusCharacters,
-      currentType
+      this.currentType
     );
     if (isValid && checkValidatorPar) {
       let typeTemplate = getTypeTemplate(type);
