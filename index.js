@@ -43,7 +43,9 @@ const generator = {
   genSync: (type, length) => {
     this.currentType = "genSync";
     const isValid = typeAndLengthCheck(type, length, this.currentType);
-    if (isValid) {
+    if (typeof isValid === "string") {
+      throw new Error(isValid);
+    } else {
       let typeTemplate = getTypeTemplate(type);
       return getSyncToken(typeTemplate, length);
     }

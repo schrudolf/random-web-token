@@ -13,6 +13,9 @@
     "url": "https://github.com/schrudolf/random-web-token/issues"
   },
   "homepage": "https://github.com/schrudolf/random-web-token#readme",
+  "scripts": {
+    "test": "jest --verbose ./test"
+  },
   "keywords": [
     "random",
     "token",
@@ -30,5 +33,8 @@
     "unique string token",
     "validator",
     "token validator"
-  ]
+  ],
+  "devDependencies": {
+    "jest": "^29.1.2"
+  }
 }
