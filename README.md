@@ -3,7 +3,13 @@
 ## Installation
 
 ```sh
-npm install random-web-token
+npm i random-web-token
+```
+
+**install this too if typescript**
+
+```sh
+npm i --save-dev @types/random-web-token
 ```
 
 ## Usage
@@ -12,24 +18,32 @@ npm install random-web-token
 
 ```sh
 const token = require("random-web-token");
-console.log(token.genSync("extra", 50)) // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
+console.log(token.genSync("extra", 50)); // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
 ```
 
-## Parameter help for genSync() and genAsync() methods
+**in Typescript**
 
-first parameter is a string
-  - "normal"      -> (a-z)
-  - "normal+"      -> (A-Z)
-  - "medium"      -> (a-z + 0-9)
-  - "medium+"      -> (A-Z + 0-9)
-  - "extra"       -> (a-Z + 0-9)
-  - "onlyNumbers" -> (0-9)
+```sh
+import * as token from "random-web-token";
+console.log(token.genSync("extra", 50)); // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
+```
+
+## Parameter help for genSync() and genAsync()
+
+first parameter is a string (indicates the allowed characters in token)
+
+- "normal" -> (a-z)
+- "normal+" -> (A-Z)
+- "medium" -> (a-z + 0-9)
+- "medium+" -> (A-Z + 0-9)
+- "extra" -> (a-Z + 0-9)
+- "onlyNumbers" -> (0-9)
 
 second parameter is a number, the length of token
 
-## Validator for genSync() or genAsync()  
+## Token validator
 
-**Token validation using syncValidator() or asyncValidator()**
+**You can check that the received token contains only the allowed characters**
 
 ```sh
 const firstToken = token.genSync("extra", 50);
