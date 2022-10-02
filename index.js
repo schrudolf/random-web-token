@@ -5,6 +5,7 @@ const getTokenWithMyOwnCharacters = require("./lib/async/withMyOwnCharacters");
 const syncValidatorTest = require("./lib/sync/syncValidator");
 const asyncValidatorTest = require("./lib/async/asyncValidator");
 const typeAndLengthCheck = require("./lib/errorHandlers/typeAndLengthCheck");
+const validatorParametersCheck = require("./lib/errorHandlers/validatorParametersCheck");
 
 let methodType;
 
@@ -89,9 +90,10 @@ const generator = {
   syncValidator: (type, length, token, allowedPlusCharacters) => {
     methodType = "syncValidator";
     const isValid = typeAndLengthCheck(type, length, methodType);
-    const checkValidatorPar = checkValidatorParameters(
+    const checkValidatorPar = validatorParametersCheck(
       token,
-      allowedPlusCharacters
+      allowedPlusCharacters,
+      methodType
     );
     if (isValid && checkValidatorPar) {
       let typeTemplate = getTypeTemplate(type);
@@ -120,9 +122,10 @@ const generator = {
   asyncValidator: (type, length, token, allowedPlusCharacters) => {
     methodType = "asyncValidator";
     const isValid = typeAndLengthCheck(type, length, methodType);
-    const checkValidatorPar = checkValidatorParameters(
+    const checkValidatorPar = validatorParametersCheck(
       token,
-      allowedPlusCharacters
+      allowedPlusCharacters,
+      methodType
     );
     if (isValid && checkValidatorPar) {
       let typeTemplate = getTypeTemplate(type);
@@ -135,25 +138,5 @@ const generator = {
     }
   },
 };
-
-function checkValidatorParameters(token, allowedPlusCharacters) {
-  try {
-    const usedMethod = ` -> ${methodType}(type: string, length: number, token: string, allowedPlusCharacters: string | undefined)`;
-    if (typeof token !== "string") {
-      throw new Error(`The third parameter must be a string  ${usedMethod}`);
-    } else if (
-      typeof allowedPlusCharacters !== "string" &&
-      typeof allowedPlusCharacters !== "undefined"
-    ) {
-      throw new Error(
-        `The fourth parameter must be a string or undefined  ${usedMethod}`
-      );
-    } else {
-      return true;
-    }
-  } catch (err) {
-    console.log(err);
-  }
-}
 
 module.exports = generator;
