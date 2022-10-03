@@ -20,7 +20,9 @@ const generator = {
   withMyOwnCharacters: (characters, length) => {
     this.currentType = "withMyOwnCharacters";
     const isValid = typeAndLengthCheck(characters, length, this.currentType);
-    if (isValid) {
+    if (typeof isValid === "string") {
+      throw new Error(isValid);
+    } else {
       return getTokenWithMyOwnCharacters(characters, length);
     }
   },
