@@ -69,7 +69,9 @@ const generator = {
   genAsync: (type, length) => {
     this.currentType = "genAsync";
     const isValid = typeAndLengthCheck(type, length, this.currentType);
-    if (isValid) {
+    if (typeof isValid === "string") {
+      throw new Error(isValid);
+    } else {
       let typeTemplate = getTypeTemplate(type);
       return getAsyncToken(typeTemplate, length);
     }
