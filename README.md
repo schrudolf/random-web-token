@@ -1,4 +1,4 @@
-**Generating tokens with (a-z, a-Z, a-Z + 0-9 ...etc) or your own characters easily without external dependencies**
+**Generating tokens with (a-z, a-Z, a-Z + 0-9 ...etc) or your own characters easily**
 
 ## Installation
 
@@ -10,6 +10,12 @@ npm i random-web-token
 
 ```sh
 npm i --save-dev @types/random-web-token
+```
+
+## Tests
+
+```sh
+npm test
 ```
 
 ## Usage

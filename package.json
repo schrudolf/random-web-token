@@ -1,6 +1,6 @@
 {
   "name": "random-web-token",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "description": "Token generator/validator without external dependencies",
   "main": "index.js",
   "repository": {
@@ -20,19 +20,24 @@
     "random",
     "token",
     "generator",
-    "token-generator",
     "javascript",
     "keygen",
-    "random-token",
-    "random string",
+    "string",
     "tokenizer",
     "number token",
     "number generator",
-    "random token generator",
+    "random string",
     "unique token",
     "unique string token",
     "validator",
-    "token validator"
+    "token validator",
+    "typescript",
+    "unique",
+    "secure",
+    "alphanumeric",
+    "randomize",
+    "rand",
+    "generate-password"
   ],
   "devDependencies": {
     "jest": "^29.1.2"
