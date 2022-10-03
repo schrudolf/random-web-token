@@ -12,12 +12,6 @@ npm i random-web-token
 npm i --save-dev @types/random-web-token
 ```
 
-## Tests
-
-```sh
-npm test
-```
-
 ## Usage
 
 **Generating a token using genSync() or genAsync()**
