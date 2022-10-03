@@ -100,7 +100,11 @@ const generator = {
       allowedPlusCharacters,
       this.currentType
     );
-    if (isValid && checkValidatorPar) {
+    if (typeof isValid === "string") {
+      throw new Error(isValid);
+    } else if (typeof checkValidatorPar === "string") {
+      throw new Error(checkValidatorPar);
+    } else {
       let typeTemplate = getTypeTemplate(type);
       return syncValidatorTest(
         typeTemplate,
