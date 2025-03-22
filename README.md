@@ -1,69 +1,122 @@
-**Generating tokens with (a-z, a-Z, a-Z + 0-9 ...etc) or your own characters easily**
+# random-web-token
+
+Easily generate random alphanumeric tokens with custom character sets. Great for user-facing tokens such as activation links, password reset tokens, invitation codes, temporary session identifiers, or other non-critical unique strings.
+
+---
 
 ## Installation
 
-```sh
-npm i random-web-token
+```bash
+npm install random-web-token
 ```
 
-**install this too if typescript**
+### (Optional) TypeScript support:
 
-```sh
-npm i --save-dev @types/random-web-token
+```bash
+npm install --save-dev @types/random-web-token
 ```
+
+---
 
 ## Usage
 
-**Generating a token using genSync() or genAsync()**
+### Generate a token (synchronously)
 
-```sh
+```js
 const token = require("random-web-token");
-console.log(token.genSync("extra", 50)); // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
+
+const generated = token.genSync("extra", 50);
+console.log(generated); // e.g., "fT7ZkWA4NpDqF0BjgY..."
 ```
 
-**in Typescript**
+---
 
-```sh
+### Generate a token (asynchronously with `await`)
+
+```js
+const token = require("random-web-token");
+
+async function generate() {
+  const generated = await token.genAsync("extra", 50);
+  console.log(generated); // e.g., "h8YkMRaWg5tBz4QEX..."
+}
+
+generate();
+```
+
+**TypeScript version:**
+
+```ts
 import * as token from "random-web-token";
-console.log(token.genSync("extra", 50)); // -> sHF3p8zZCTdAmJ0cyS60NK9RRPXi6NQ42zdUbigMBZYZY0504H
+
+async function generate() {
+  const generated = await token.genAsync("extra", 50);
+  console.log(generated);
+}
+
+generate(); // -> sHF3p8zZCTdAmJ0cyS60NK...
 ```
 
-## Parameter help for genSync() and genAsync()
+---
 
-first parameter is a string (indicates the allowed characters in token)
+## Character sets
 
-- "normal" -> (a-z)
-- "normal+" -> (A-Z)
-- "medium" -> (a-z + 0-9)
-- "medium+" -> (A-Z + 0-9)
-- "extra" -> (a-Z + 0-9)
-- "onlyNumbers" -> (0-9)
+Use one of the predefined sets as the first argument when generating tokens:
 
-second parameter is a number, the length of token
+| Name            | Characters Used |
+| --------------- | --------------- |
+| `"normal"`      | a–z             |
+| `"normal+"`     | A–Z             |
+| `"medium"`      | a–z, 0–9        |
+| `"medium+"`     | A–Z, 0–9        |
+| `"extra"`       | a–z, A–Z, 0–9   |
+| `"onlyNumbers"` | 0–9             |
 
-## Token validator
+---
 
-**You can check that the received token contains only the allowed characters**
+## Validate a token
 
-```sh
-const firstToken = token.genSync("extra", 50);
+Check if a token meets your character set and length criteria:
 
-console.log(token.syncValidator("extra", 50, firstToken)) // true firstToken same type,length
-console.log(token.syncValidator("extra", 40, firstToken)) // false firstToken same type, but firstToken length !== 40
-console.log(token.syncValidator("normal", 50, firstToken)) // false firstToken same length but not the same type.
+```js
+const token = require("random-web-token");
 
-const secondToken = token.genSync("extra", 50) + "+!/"; // returns 50 length token + 3 extra character
+const t = token.genSync("extra", 50);
 
-console.log(token.syncValidator("extra", 53, secondToken, "+!/")) // true same type/length and +3 allowed characters "+!/"
-console.log(token.syncValidator("extra", 53, secondToken, "")) // false same type/length but "+!/" characters not allowed
+// Valid case
+console.log(token.syncValidator("extra", 50, t)); // true
 
-fourth parameter is optional
+// Invalid: wrong length
+console.log(token.syncValidator("extra", 40, t)); // false
+
+// Invalid: wrong character set
+console.log(token.syncValidator("normal", 50, t)); // false
 ```
 
-## If you want a token with your own characters
+### Allowing custom extra characters
 
-**use withMyOwnCharacters() method**
+You can optionally allow specific extra characters:
 
-```sh
-await token.withMyOwnCharacters("abc123", 10) // -> a2b1cc23ab
+```js
+const altered = token.genSync("extra", 50) + "+!/";
+console.log(token.syncValidator("extra", 53, altered, "+!/")); // true
 ```
+
+---
+
+## Custom character sets
+
+Need a fully custom character set? Use `withMyOwnCharacters()`:
+
+```js
+const token = require("random-web-token");
+
+async function customToken() {
+  const t = await token.withMyOwnCharacters("abc123", 10);
+  console.log(t); // e.g., "a12cb31acb"
+}
+
+customToken();
+```
+
+---

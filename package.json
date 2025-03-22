@@ -1,6 +1,6 @@
 {
   "name": "random-web-token",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Token generator/validator without external dependencies",
   "main": "index.js",
   "repository": {
