@@ -1,6 +1,9 @@
 # random-web-token
 
-Easily generate random alphanumeric tokens with custom character sets. Great for user-facing tokens such as activation links, password reset tokens, invitation codes, temporary session identifiers, or other non-critical unique strings.
+A lightweight utility for generating customizable random strings (a.k.a. "tokens") using predefined or custom character sets.
+Includes simple validation to check whether a given string matches a specific character set and length.
+
+Ideal for user-facing identifiers such as activation links, invitation links, or other non-sensitive unique strings.
 
 ---
 
@@ -20,7 +23,7 @@ npm install --save-dev @types/random-web-token
 
 ## Usage
 
-### Generate a token (synchronously)
+### Generate a random string (synchronously)
 
 ```js
 const token = require("random-web-token");
@@ -31,7 +34,7 @@ console.log(generated); // e.g., "fT7ZkWA4NpDqF0BjgY..."
 
 ---
 
-### Generate a token (asynchronously with `await`)
+### Generate a random string (asynchronously with `await`)
 
 ```js
 const token = require("random-web-token");
@@ -61,7 +64,7 @@ generate(); // -> sHF3p8zZCTdAmJ0cyS60NK...
 
 ## Character sets
 
-Use one of the predefined sets as the first argument when generating tokens:
+Use one of the predefined sets as the first argument when generating a string:
 
 | Name            | Characters Used |
 | --------------- | --------------- |
@@ -74,9 +77,9 @@ Use one of the predefined sets as the first argument when generating tokens:
 
 ---
 
-## Validate a token
+## Validate a string
 
-Check if a token meets your character set and length criteria:
+You can validate whether a given string matches a specific character set and length:
 
 ```js
 const token = require("random-web-token");
@@ -104,7 +107,7 @@ console.log(token.syncValidator("extra", 53, altered, "+!/")); // true
 
 ---
 
-## Custom character sets
+## Use custom character sets
 
 Need a fully custom character set? Use `withMyOwnCharacters()`:
 
