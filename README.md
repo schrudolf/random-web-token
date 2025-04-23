@@ -1,11 +1,12 @@
 # random-web-token
 
+This package uses the secure Node.js crypto module.
+
 A lightweight utility for generating customizable random strings (a.k.a. "tokens") using predefined or custom character sets.
 Includes simple validation to check whether a given string matches a specific character set and length.
 
-Ideal for user-facing identifiers such as activation links, invitation links, or other non-sensitive unique strings.
+Ideal for user-facing identifiers such as activation links, invitation links, forgot password links, or other non-sensitive unique strings.
 
-This package use node crypto
 ---
 
 ## Installation
