@@ -1,7 +1,7 @@
 {
   "name": "random-web-token",
-  "version": "2.2.3",
-  "description": "Token generator/validator without external dependencies",
+  "version": "2.2.6",
+  "description": "Generate customizable random strings (tokens) using secure charsets with validation – zero dependencies.",
   "main": "index.js",
   "repository": {
     "type": "git",
