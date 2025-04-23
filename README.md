@@ -5,6 +5,7 @@ Includes simple validation to check whether a given string matches a specific ch
 
 Ideal for user-facing identifiers such as activation links, invitation links, or other non-sensitive unique strings.
 
+This package use node crypto
 ---
 
 ## Installation

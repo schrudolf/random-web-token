@@ -37,7 +37,9 @@
     "invite link",
     "invite code",
     "javascript",
-    "typescript"
+    "typescript",
+    "node",
+    "crypto"
   ],
   "devDependencies": {
     "jest": "^29.1.2"
